@@ -20,23 +20,23 @@ public class Complex {
     }
 
     public Complex add(Complex n2){
-        Complex n3 = new Complex(this.a, this.b);
-        n3.a += n2.a;
-        n3.b += n2.b;
+        float real = this.a + n2.a;
+        float imag = this.b + n2.b;
+        Complex n3 = new Complex(real, imag);
         return n3;
     }
 
-    public Complex subtract(Complex n2){
-        Complex n3 = new Complex(this.a, this.b);
-        n3.a -= n2.a;
-        n3.b -= n2.b;
+    public Complex sub(Complex n2){
+        float real = this.a - n2.a;
+        float imag = this.b - n2.b;
+        Complex n3 = new Complex(real, imag);
         return n3;
     }
 
-    public Complex multiply(Complex n2){
-        Complex n3 = new Complex(this.a, this.b);
-        n3.a *= n2.a;
-        n3.b *= n2.b;
+    public Complex mult(Complex n2){
+        float real = this.a * n2.a - this.b * n2.b;
+        float imag = this.b * n2.a + this.a * n2.b;
+        Complex n3 = new Complex(real, imag);
         return n3;
     }
 
