@@ -12,18 +12,18 @@ public class Rectangle extends Form{
 
     public int[] intersection(int y){
         
-        if(y == this.pos_y || y == this.pos_y+this.height-1){
+        if(y == this.pos_y || y == this.pos_y+this.height){
             // Aresta superior ou inferior
             int[] vector = new int[this.width];
-            for(int i=this.pos_x;i<this.pos_x+this.width-1;i++){
+            for(int i=this.pos_x;i<this.pos_x+this.width;i++){
                 vector[i] = i;
             }
             return vector;
-        } else if(y>this.pos_y && y<this.pos_y+this.height-1){
+        } else if(y>this.pos_y && y<this.pos_y+this.height){
             // Meio do retângulo
             int[] vector = new int[2];
             vector[0] = this.pos_x;
-            vector[1] = this.pos_x+this.width-1;
+            vector[1] = this.pos_x+this.width;
             return vector;
         } else {
             // Não pertence ao retângulo

@@ -16,7 +16,7 @@ public class Image {
     public void addForm(Form forma){
         formas.add(forma);
     }
-    public void line(int y){
+    public String line(int y){
         //Criar vetor da linha e inicializar tudo a 0
         char[] linha = new char[this.width];
         for (int i = 0; i < linha.length; i++) {
@@ -32,8 +32,15 @@ public class Image {
                 linha[j]='x';
             }
         }
-    }
-    public void toString(){
 
+        return new String(linha);
     }
+    public String toString() {
+        String image = "";
+        for (int i = 0; i < this.height; i++) {
+            image = image + this.line(i) + "\n";
+        }
+        return image;
+    }
+    
 }
