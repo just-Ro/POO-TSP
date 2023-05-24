@@ -1,5 +1,5 @@
 package main;
 
-public class aggregate {
+public class Aggregate {
     
 }
