@@ -2,6 +2,7 @@ package main;
 
 import java.io.File;
 import java.util.Scanner;
+import java.io.FileNotFoundException;
 
 public class Graph {
     int[][] matrix;
@@ -25,18 +26,24 @@ public class Graph {
     }
 
     public void readGraph(String file){
-        File f = new File(file);
-        Scanner scanner = new Scanner(file);
-        //Ignore First Line
-        scanner.nextLine();
+        try{
+            File f = new File(file);
+            Scanner scanner = new Scanner(f);
+            //Ignore First Line
+            scanner.nextLine();
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                matrix[i][j] =scanner.nextInt();
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    matrix[i][j] =scanner.nextInt();
+                }
             }
-        }
 
-        scanner.close();
+            scanner.close();
+        
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
     }
 
 }
