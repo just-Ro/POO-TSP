@@ -18,11 +18,6 @@ public class Main {
             // File mode
             Graph graph = new Graph(params.n);
             graph.readGraph(params.file);
-
-            /* for (int i = 0; i < params.n; i++) {
-                for (int j = 0; j < params.n; j++) {
-                    System.out.println(matrix[i][j]);
-                }} */
             
         }
 
