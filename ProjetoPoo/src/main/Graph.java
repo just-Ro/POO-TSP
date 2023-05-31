@@ -2,24 +2,36 @@ package main;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.util.Random;
 
 public class Graph {
-    int[][] matrix;
+    Edge[][] matrix;
     int n;
+    // Construtor para modo read
     public Graph(int nodes, int maxEdgeWeight){
-        n = nodes;
+        this.n = nodes;
         
-        this.matrix = new int[n][n];
-        
+        this.matrix = new Edge[n][n];
+        initGraph();
     }
 
+    // Construtor para modo file
     public Graph(int nodes){
-        n = nodes;
+        this.n = nodes;
+        initGraph();
+    }
 
+    public void initGraph(){
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                this.matrix[i][j].weight = 0;
+                this.matrix[i][j].ph = 0;
+            }
+        }
     }
 
     public void readGraph(String file){
@@ -31,7 +43,7 @@ public class Graph {
 
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
-                    matrix[i][j] =scanner.nextInt();
+                    this.matrix[i][j].weight =scanner.nextInt();
                 }
             }
 
@@ -43,7 +55,7 @@ public class Graph {
         }
     }
 
-    public void createGraph(int n, int maxEdgeWeight, int nestNode){
+    public void createGraph(int n, int maxEdgeWeight){
         // Init
         int[] array = new int[n + 1];
         for (int i = 0; i < n; i++) {
@@ -59,66 +71,41 @@ public class Graph {
         }
         array[n] = array[0];
 
+        int nodeA, nodeB;
+
         for (int i = 0; i < n; i++) {
-            int nodeA = array[i];
-            int nodeB = array[i + 1];
-            int edgeValue = rand.nextInt(maxEdgeWeigh) + 1; // Generate a random value between 0 and 9 for the edge
-            matrix[nodeA][nodeB] = edgeValue;
-            matrix[nodeB][nodeA] = edgeValue; // Since the graph is undirected, assign the same value for the reverse edge
+            nodeA = array[i];
+            nodeB = array[i + 1];
+            int edgeValue = rand.nextInt(maxEdgeWeight) + 1; // Generate a random value between 0 and 9 for the edge
+            this.matrix[nodeA][nodeB].weight = edgeValue;
+            this.matrix[nodeB][nodeA].weight = edgeValue; // Since the graph is undirected, assign the same value for the reverse edge
         }
-    }
 
-}
-
-
-
-
-/////////////////////////////////////////
-
-
-public class Graph {
-    // node of adjacency list 
-    static class Node {
-        int value, weight;
-        Node(int value, int weight)  {
-            this.value = value;
-            this.weight = weight;
-        }
-    };
- 
-// define adjacency list
- 
-List<List<Node>> adj_list = new ArrayList<>();
- 
-    //Graph Constructor
-    public Graph(List<Edge> edges)
-    {
-        // adjacency list memory allocation
-        for (int i = 0; i < edges.size(); i++)
-            adj_list.add(i, new ArrayList<>());
-
-        // add edges to the graph
-        for (Edge e : edges)
-        {
-            // allocate new node in adjacency List from src to dest
-            adj_list.get(e.src).add(new Node(e.dest, e.weight));
-        }
-    }
-// print adjacency list for the graph
-    public static void printGraph(Graph graph)  {
-        int src_vertex = 0;
-        int list_size = graph.adj_list.size();
- 
-        System.out.println("The contents of the graph:");
-        while (src_vertex < list_size) {
-            //traverse through the adjacency list and print the edges
-            for (Node edge : graph.adj_list.get(src_vertex)) {
-                System.out.print("Vertex:" + src_vertex + " ==> " + edge.value + 
-                                " (" + edge.weight + ")\t");
+        int additionalEdges = (int) (n / 3);
+        for (int i = 0; i < additionalEdges; i++) {
+            nodeA = rand.nextInt(n) + 1;
+            nodeB = rand.nextInt(n) + 1;
+            int edgeValue = rand.nextInt(maxEdgeWeight) + 1; // Generate a random value between 1 and maxEdgeWeight
+            if (this.matrix[nodeA][nodeB].weight == 0 && this.matrix[nodeB][nodeA].weight == 0) {
+                this.matrix[nodeA][nodeB].weight = edgeValue;
+                this.matrix[nodeB][nodeA].weight = edgeValue; // Since the graph is undirected, assign the same value for the reverse edge
+            } else {
+                i--; // Retry adding an edge since there was already an edge present
             }
- 
-            System.out.println();
-            src_vertex++;
         }
     }
+
+    @Override
+    public String toString() {
+        String printing = new String("");
+        for(int i=0;i<this.n;i++){
+            for(Edge e : this.matrix[i]){
+                printing = printing + e.weight + " ";
+            }
+            printing = printing + "\n";
+        }
+        return printing;
+    }
+
+    
 }
