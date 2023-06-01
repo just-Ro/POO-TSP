@@ -8,7 +8,7 @@ public class Args{
     public int nodes, maxEdgeWeight, nestNode;
     public double alfa, beta, delta, eta, p, pheromoneLevel, colonySize, finalInstant;
     public String file;
-    private String[] args;
+    //private String[] args;
     private String mode;
 
     public Args(String[] args){
@@ -23,13 +23,13 @@ public class Args{
                 System.out.println("Not enough command line arguments.");
                 System.exit(0);
             }
-            this.readFromArgs();;
+            this.readFromArgs(args);;
             
         }else if(option.equals("-f")){
             this.file = args[1];
             this.mode = new String("file");
 
-            this.readFromFile();
+            this.readFromFile(args);
             
         }else{
             System.out.println("Invalid command line arguments.");
@@ -37,7 +37,7 @@ public class Args{
         }
     }
 
-    private void readFromArgs(){
+    private void readFromArgs(String[] args){
         this.file = "";
         this.mode = new String("read");
         this.nodes = Integer.parseInt(args[1]);
@@ -53,7 +53,7 @@ public class Args{
         this.finalInstant = Double.parseDouble(args[11]);
     }
 
-    private void readFromFile(){
+    private void readFromFile(String[] args){
         try {
             File file = new File(args[1]);
             Scanner scanner = new Scanner(file);

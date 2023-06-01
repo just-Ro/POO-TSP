@@ -1,9 +1,6 @@
 package main;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.util.Random;
@@ -28,8 +25,7 @@ public class Graph {
     public void initGraph(){
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                this.matrix[i][j].weight = 0;
-                this.matrix[i][j].ph = 0;
+                this.matrix[i][j] = new Edge(0,0);
             }
         }
     }
@@ -97,7 +93,7 @@ public class Graph {
 
     @Override
     public String toString() {
-        String printing = new String("");
+        String printing = new String();
         for(int i=0;i<this.n;i++){
             for(Edge e : this.matrix[i]){
                 printing = printing + e.weight + " ";
