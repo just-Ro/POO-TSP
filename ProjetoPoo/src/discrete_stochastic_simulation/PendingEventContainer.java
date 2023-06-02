@@ -1,4 +1,4 @@
-package discreteStochasticSimulation;
+package discrete_stochastic_simulation;
 
 public interface PendingEventContainer {
     

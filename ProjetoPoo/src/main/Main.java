@@ -1,15 +1,15 @@
 package main;
-
+import graph.*;
 /* Como compilar o projeto
  * 
  * Entrar na pasta certa:
  * cd src
  * 
  * Compilar tudo:
- * javac main/*.java
+ * javac main/*.java ant_colony_optimization/*.java discrete_stochastic_simulation/*.java graph/*.java
  * 
  * Criar o executável:
- * jar cmf manif.txt project.jar hello/*
+ * jar cmf manif.txt project.jar main/* ant_colony_optimization/* discrete_stochastic_simulation/* graph/*
  * 
  * Correr o executável:
  * java -jar project.jar
