@@ -9,21 +9,24 @@ public class Ant{
     protected List<Integer> path;
     protected int pathSize=0;
     protected int currentNode = -1;
-    private String name = "Steve";
-    private int steves = 0;
+    private String name;
 
     public Ant(int n1){
         this.path = new ArrayList<Integer>();
         path.add(n1);
         currentNode=n1;
-        name="Steve"+steves;
-        steves++;
+        Names names = new Names();
+        name = names.setName();
     }
 
     public void travel(int node){
         path.add(pathSize, node);
         pathSize += 1;
         currentNode = node;
+    }
+
+    public String antName(){
+        return name;
     }
 
     public void nextNode(Edge[][] matrix, int nodes, double alfa, double beta){
