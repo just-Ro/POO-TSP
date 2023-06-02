@@ -103,5 +103,5 @@ public class Graph {
         return printing;
     }
 
-    
+    public void getAdjacent(int node){}
 }
