@@ -5,11 +5,11 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.util.Random;
 
-public class Graph {
+public class MatrixGraph{
     Edge[][] matrix;
     int n;
     // Construtor para modo read
-    public Graph(int nodes, int maxEdgeWeight){
+    public MatrixGraph(int nodes, int maxEdgeWeight){
         this.n = nodes;
         
         this.matrix = new Edge[n][n];
@@ -17,7 +17,7 @@ public class Graph {
     }
 
     // Construtor para modo file
-    public Graph(int nodes){
+    public MatrixGraph(int nodes){
         this.n = nodes;
         initGraph();
     }

@@ -3,42 +3,100 @@ package ant_colony_optimization;
 import java.util.List;
 import java.util.ArrayList;
 import graph.*;
+import java.util.Random;
 
 public class Ant{
     protected List<Integer> path;
     protected int pathSize=0;
     protected int currentNode = -1;
+    private String name = "Steve";
+    private int steves = 0;
 
     public Ant(int n1){
         this.path = new ArrayList<Integer>();
         path.add(n1);
         currentNode=n1;
+        name="Steve"+steves;
+        steves++;
     }
 
     public void travel(int node){
-        path.add(node, null);
+        path.add(pathSize, node);
         pathSize += 1;
         currentNode = node;
     }
 
-    public void chooseNextNode(Edge[][] matrix, int nodes, double alfa, double beta){
-        int i=0, aux=0;
-        double totalchance = 0;
+    public void nextNode(Edge[][] matrix, int nodes, double alfa, double beta){
+        int i=0, j=0, aux=0;
+        boolean cicle = false;
+        double totalChance = 0, currentChance = 0;
         List<Integer> next = new ArrayList<>();
         List<Double> chance = new ArrayList<>();
         
+        // considera todos os nos existentes aos quais ele tenha uma edge e pelos quais nao tenha passado
         while(i<nodes){
             if(matrix[currentNode-1][i].getWeight()!=0){
+                for(j=0; j<pathSize; j++){
+                    if(path.get(j).equals(i)){
+                        j=-1;
+                        break;
+                    }
+                }
+                if(j==-1) break;
                 next.add(aux, i);
                 // (alfa+pheromones)/(beta+weight)
                 chance.add(aux,(alfa+matrix[currentNode-1][i].getPheromones())/(beta+matrix[currentNode-1][i].getWeight()));
-                totalchance+=chance.get(aux);
+                totalChance+=chance.get(aux);
                 aux++;
             }
             i++;
         }
+        // se nao tiver nenhum no pelo qual nao tenha passado escolhe um pelo qual ja tenha passado
+        if(aux==0){
+            while(i<nodes){
+                if(matrix[currentNode-1][i].getWeight()!=0){
+                    next.add(aux, i);
+                    // (alfa+pheromones)/(beta+weight)
+                    chance.add(aux,(alfa+matrix[currentNode-1][i].getPheromones())/(beta+matrix[currentNode-1][i].getWeight()));
+                    totalChance+=chance.get(aux);
+                    aux++;
+                }
+                i++;
+            }
+            cicle=true;
+        }
+        // chance de 0 a 100
+        for(i=0; i<aux-1; i++){
+            chance.set(i,chance.get(i)/totalChance + currentChance);
+            currentChance=chance.get(i);
+        }
+        chance.set(aux-1,100.00);
+        // so com duas casas decimais
         for(i=0; i<aux; i++){
-            chance.set(i,chance.get(i)/totalchance);
+            chance.set(aux, Math.round(chance.get(i) * 100.0) / 100.0);
+        }
+        // escolhe aleatoriamente o proximo no
+        Random random = new Random();
+        double choose = ( random.nextDouble() % 10000 ) / 100 ;
+        for(i=0; i<aux; i++){
+            if(choose<chance.get(i)){
+                travel(next.get(i));
+                break;
+            }
+        }
+        // tem que retirar o ciclo criado // node escolhido armazenado na variavel 'i'
+        if(cicle){
+            for(j=0; j<pathSize; j++){
+                if(path.get(j).equals(i)){
+                    j++;
+                    int k = j;
+                    for(; j<pathSize; j++){
+                        path.remove(j);
+                    }
+                    pathSize = k;
+                    break;
+                }
+            }
         }
     }
 }
