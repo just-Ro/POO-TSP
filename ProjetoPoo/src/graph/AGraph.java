@@ -5,7 +5,7 @@ package graph;
 
 import java.util.*;
 
-public class GenericGraph<T> {
+public class AGraph<T> {
 
 	// We use Hashmap to store the edges in the graph
 	private Map<T, List<T> > map = new HashMap<>();
