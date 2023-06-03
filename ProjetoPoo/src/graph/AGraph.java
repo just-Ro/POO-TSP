@@ -15,8 +15,7 @@ public class AGraph<T> {
 		map.put(s, new LinkedList<T>());
 	}
 
-	// This function adds the edge
-	// between source to destination
+	// This function adds the edge between source to destination
 	public void addEdge(T source, T destination, boolean bidirectional){
 
 		if (!map.containsKey(source))
@@ -32,12 +31,12 @@ public class AGraph<T> {
 	}
 
 	// This function gives the count of vertices
-	public void getVertexCount(){
-		System.out.println("The graph has " + map.keySet().size() + " vertex");
+	public int getVertexCount(){
+		return map.keySet().size();
 	}
 
 	// This function gives the count of edges
-	public void getEdgesCount(boolean bidirection){
+	public int getEdgeCount(boolean bidirection){
 		int count = 0;
 		for (T v : map.keySet()) {
 			count += map.get(v).size();
@@ -45,30 +44,17 @@ public class AGraph<T> {
 		if (bidirection == true) {
 			count = count / 2;
 		}
-		System.out.println("The graph has " + count + " edges.");
+		return count;
 	}
 
-	// This function gives whether
-	// a vertex is present or not.
-	public void hasVertex(T s){
-		if (map.containsKey(s)) {
-			System.out.println("The graph contains " + s + " as a vertex.");
-		}
-		else {
-			System.out.println("The graph does not contain " + s + " as a vertex.");
-		}
+	// This function gives whether a vertex is present or not.
+	public boolean hasVertex(T s){
+		return map.containsKey(s);
 	}
 
 	// This function gives whether an edge is present or not.
-	public void hasEdge(T s, T d){
-		if (map.get(s).contains(d)) {
-			System.out.println("The graph has an edge between "
-							+ s + " and " + d + ".");
-		}
-		else {
-			System.out.println("The graph has no edge between "
-							+ s + " and " + d + ".");
-		}
+	public boolean hasEdge(T s, T d){
+		return map.get(s).contains(d);
 	}
 
 	// Prints the adjancency list of each vertex.
