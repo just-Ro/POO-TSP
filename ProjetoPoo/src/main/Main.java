@@ -1,6 +1,7 @@
 package main;
 
 import graph.*;
+import simulation.*;
 /* Como compilar o projeto
  * 
  * Entrar na pasta certa:
@@ -38,6 +39,8 @@ public class Main{
             graph.readGraph(params.file);
         
         }
+
+        Simulator sim = new Simulator(params.finalInstant);
     }
 
     public static void clearScreen() {  

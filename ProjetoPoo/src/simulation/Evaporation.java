@@ -1,10 +1,7 @@
-package discrete_stochastic_simulation;
+package simulation;
 
-import java.sql.Time;
-
-public class Departure implements Event{
-    Time time;
-
+public class Evaporation {
+    
     @Override
     public void handleEvent() {
         // TODO Auto-generated method stub
@@ -16,4 +13,5 @@ public class Departure implements Event{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateSimulationState'");
     }
+    
 }

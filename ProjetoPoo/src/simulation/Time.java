@@ -1,7 +1,7 @@
-package discrete_stochastic_simulation;
+package simulation;
 
-public class Tollhouse implements Event {
-
+public class Time {
+    
     @Override
     public void handleEvent() {
         // TODO Auto-generated method stub

@@ -1,4 +1,4 @@
-package discrete_stochastic_simulation;
+package simulation;
 
 public interface Event {
     

@@ -1,6 +1,6 @@
-package discrete_stochastic_simulation;
+package simulation;
 
-public class Arrival implements Event{
+public class Move implements Event{
 
     @Override
     public void handleEvent() {
