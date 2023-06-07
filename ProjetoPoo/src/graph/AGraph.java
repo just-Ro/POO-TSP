@@ -5,18 +5,25 @@ package graph;
 
 import java.util.*;
 
-public class AGraph<T> {
+public class AGraph<T,E> implements IGraph<T, E> {
 
 	// We use Hashmap to store the edges in the graph
-	private Map<T, List<T> > map = new HashMap<>();
+	private Map<T, Map<T, E> > map = new HashMap<>();
+	boolean bidirectional = false;
+
+	public AGraph(boolean bidirectional){
+		this.bidirectional = bidirectional;
+	}
 
 	// This function adds a new vertex to the graph
-	public void addVertex(T s){
-		map.put(s, new LinkedList<T>());
+	@Override
+	public void addVertex(T vertex){
+		map.put(vertex, new HashMap<T,E>());
 	}
 
 	// This function adds the edge between source to destination
-	public void addEdge(T source, T destination, boolean bidirectional){
+	@Override
+	public void addEdge(T source, T destination, E edge){
 
 		if (!map.containsKey(source))
 			addVertex(source);
@@ -24,52 +31,47 @@ public class AGraph<T> {
 		if (!map.containsKey(destination))
 			addVertex(destination);
 
-		map.get(source).add(destination);
-		if (bidirectional == true) {
-			map.get(destination).add(source);
+		map.get(source).put(destination, edge);
+		if (this.bidirectional == true) {
+			map.get(destination).put(source, edge);
 		}
 	}
 
 	// This function gives the count of vertices
+	@Override
 	public int getVertexCount(){
 		return map.keySet().size();
 	}
 
-	// This function gives the count of edges
-	public int getEdgeCount(boolean bidirection){
+	// This function gives the total count of edges
+	@Override
+	public int getEdgeCount(){
 		int count = 0;
 		for (T v : map.keySet()) {
-			count += map.get(v).size();
+			count += getEdgeCount(v);
 		}
-		if (bidirection == true) {
+		if (this.bidirectional == true) {
 			count = count / 2;
 		}
 		return count;
 	}
 
+	// This function gives the count of edges connected to a specific vertex
+	@Override
+	public int getEdgeCount(T v){
+		return map.get(v).size();
+	}
+
 	// This function gives whether a vertex is present or not.
-	public boolean hasVertex(T s){
-		return map.containsKey(s);
+	@Override
+	public boolean hasVertex(T vertex){
+		return map.containsKey(vertex);
 	}
 
 	// This function gives whether an edge is present or not.
-	public boolean hasEdge(T s, T d){
-		return map.get(s).contains(d);
-	}
-
-	// Prints the adjancency list of each vertex.
 	@Override
-	public String toString(){
-		StringBuilder builder = new StringBuilder();
-
-		for (T v : map.keySet()) {
-			builder.append(v.toString() + ": ");
-			for (T w : map.get(v)) {
-				builder.append(w.toString() + " ");
-			}
-			builder.append("\n");
-		}
-
-		return (builder.toString());
+	public boolean hasEdge(T source, T destination){
+		return map.get(source).containsKey(destination);
 	}
+
 }

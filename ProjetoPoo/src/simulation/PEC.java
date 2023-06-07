@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 
 public class PEC {
-
+    // Pending Event Container
     ArrayList<Event> eventList;
 
     public PEC(){

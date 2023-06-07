@@ -1,6 +1,10 @@
-package main;
+package ant_colony_optimization;
 
-public class Pheromenes{
+import graph.*;
 
+public class Pheromones extends AGraph<Integer,Double>{
+    
+    public Pheromones(){
+        //addVertex();
+    }
 }
-
