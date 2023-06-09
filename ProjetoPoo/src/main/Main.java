@@ -1,5 +1,9 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import ant_colony_optimization.*;
 import graph.*;
 import simulation.*;
 /* Como compilar o projeto
@@ -40,7 +44,8 @@ public class Main{
         
         }
 
-        Simulator sim = new Simulator(params.finalInstant);
+        Colony col = new Colony(params.colonySize,params.nestNode);
+        Simulator sim = new Simulator(params, col);
     }
 
     public static void clearScreen() {  
@@ -69,23 +74,11 @@ public class Main{
 
 
 
-//tava a mostrar o segredo ao miragem
-//ahhhhhhh
-//olha o que sao estas coisas nesta parte do codigo?
-//nem sei bem, copiei da net e estava agora a analisar
-//aaahhhh okok
-//nas supostamente é uma classe genérica para grafos
-//eu acho q n e preciso algo assim tao avancado, nao basta so ter os get? para ir buscar as cenas importantes do grafo que temos
-//a cena é que é
-//idk
-//eu acho q sim. o stor n ta no sdeec? ta
-//nao queres ir perguntar? eu ate ia mas estou um pouco longe
-// e pergunto oq
-//se esta parte é suposto ser assim ou algo mais simples mesmo so com os get
-//eu entrei la ha bocado e o stor tava a explicar ao um gajo que ele tinha que ter uns metodos no grafo para retornar o length do grafo
-//n sei mt bem o contexto mas talvez tenha a ver com isto
-//talvezz 
-//falhei miseravelmente
+
+
+
+
+
 //                                                 _____
 //   											 _/ _ _ \_  
 //   											(o / | \ o)
@@ -97,9 +90,3 @@ public class Main{
 //   											 | \___/ |
 //   											 \       /
 //   											  \__ __/
-//conversa bem épica mas agr vamos apagar
-// naoooooo deixa aqui, daqui a 3 dias apagamos
-//eu se calhar apago o ficheiro inteiro daqui a 3 minutos
-//ent calma
-//diz adeus
-//adeus
