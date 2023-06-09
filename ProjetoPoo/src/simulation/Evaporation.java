@@ -1,10 +1,10 @@
 package simulation;
 
-public class Evaporation {
+public class Evaporation implements Event{
 
     private double eventTime;
 
-        public Evaporation(double time){
+    public Evaporation(double time){
         this.eventTime = time;
         handleEvent();
     }

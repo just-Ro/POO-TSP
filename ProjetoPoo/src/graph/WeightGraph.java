@@ -1,30 +1,28 @@
-package ant_colony_optimization;
+package graph;
 
 import java.util.*;
-import graph.*;
 
-public class Pheromones extends AGraph<Integer,Double>{
+public class WeightGraph extends AGraph<Integer,Integer>{
     
-    public Pheromones(){
+	public WeightGraph(){
 		super(true);
 
 	}
 
-
-    // Prints the adjancency list of each vertex.
+    // Prints the adjancency list of each node.
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 
-		Set<Integer> vertexes = getNodes();
-		for( Integer source : vertexes){
-			builder.append(source.toString()).append(": ");	// Name of the vertex
+		Set<Integer> nodes = getNodes();
+		for( Integer source : nodes){
+			builder.append(source.toString()).append(": ");	// Name of the node
 			Set<Integer> neighbours = getNeighbours(source);
 			for(Integer destination : neighbours){
 				builder.append("(");
 				builder.append(destination.toString());
 				builder.append(" ");
-				builder.append(String.format("%.2f", getEdge(source, destination)));
+				builder.append(getEdge(source, destination).toString());
 				builder.append(") ");
 			}
 			builder.append("\n");

@@ -1,8 +1,6 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 import ant_colony_optimization.*;
 import graph.*;
 import simulation.*;
@@ -12,10 +10,10 @@ import simulation.*;
  * cd src
  * 
  * Compilar tudo:
- * javac main/*.java ant_colony_optimization/*.java discrete_stochastic_simulation/*.java graph/*.java
+ * javac main/*.java ant_colony_optimization/*.java simulation/*.java graph/*.java
  * 
  * Criar o executável:
- * jar cmf manif.txt project.jar main/* ant_colony_optimization/* discrete_stochastic_simulation/* graph/*
+ * jar cmf manif.txt project.jar main/* ant_colony_optimization/* simulation/* graph/*
  * 
  * Correr o executável:
  * java -jar project.jar
@@ -27,7 +25,7 @@ public class Main{
         System.out.println("Program started");
         
         // debug without command line arguments
-        String[] customArgs = initCustomArgs();
+        String[] customArgs = initCustomArgs("-r");
 
         Args params = new Args(customArgs);   // Parse command line arguments
         
@@ -53,21 +51,28 @@ public class Main{
         System.out.flush();  
     }
 
-    public static String[] initCustomArgs(){
-        String[] customArgs = new String[12];
-        customArgs[0] = new String("-r");
-        customArgs[1] = new String("5");
-        customArgs[2] = new String("1");
-        customArgs[3] = new String("1");
-        customArgs[4] = new String("1");
-        customArgs[5] = new String("1");
-        customArgs[6] = new String("1");
-        customArgs[7] = new String("1");
-        customArgs[8] = new String("1");
-        customArgs[9] = new String("1");
-        customArgs[10] = new String("1");
-        customArgs[11] = new String("1");
-        return customArgs;
+    public static String[] initCustomArgs(String mode){
+        if(mode.equals("-r")){
+            String[] customArgs = new String[12];
+            customArgs[0] = new String("-r");
+            customArgs[1] = new String("5");
+            customArgs[2] = new String("1");
+            customArgs[3] = new String("1");
+            customArgs[4] = new String("1");
+            customArgs[5] = new String("1");
+            customArgs[6] = new String("1");
+            customArgs[7] = new String("1");
+            customArgs[8] = new String("1");
+            customArgs[9] = new String("1");
+            customArgs[10] = new String("1");
+            customArgs[11] = new String("1");
+            return customArgs;
+        }else{
+            String[] customArgs = new String[12];
+            customArgs[0] = new String("-f");
+            customArgs[1] = new String("test.txt");
+            return customArgs;
+        }
     }
     
 }
