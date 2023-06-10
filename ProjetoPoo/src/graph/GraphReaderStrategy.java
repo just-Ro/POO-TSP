@@ -3,7 +3,7 @@ package graph;
 import java.io.*;
 import java.util.*;
 
-public class ReadGraphStrategy implements IGraphFillStrategy{
+public class GraphReaderStrategy implements IGraphFillStrategy{
 
     @Override
     public void fill(WeightGraph graph, Integer nodes, Integer maxWeight, String file) {

@@ -6,7 +6,6 @@ public class WeightGraph extends AGraph<Integer,Integer>{
     
 	public WeightGraph(){
 		super(true);
-
 	}
 
     // Prints the adjancency list of each node.
