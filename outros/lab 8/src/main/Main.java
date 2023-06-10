@@ -1,68 +1,24 @@
 package main;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Arrays;
+import musicplayer.*;
 
-public class Main extends PlayList{
-
-    private String[][] playLists;
-    private String music;
-
-    public Main(int numb){
-        createPL(music,playLists[numb]);
-    }
-
-    public int plNum(String[] playlist, String[][] playLists){
-        int i=0;
-        while(playLists[i]!=playlist){
-            i++;
-            if(playlist[i]==null)
-                return -1;
-        }
-        return i;
-    }
-
-    public int numPl(String[][] playLists){
-        int i=0;
-        while(playLists[i]!=null){
-            i++;
-        }
-        return i;
-    }
-
-    public static void insert(String[] args) {
-
-        System.out.println("Enter playlist here : ");
-
-        try{
-            BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
-            String playlist = bufferRead.readLine();
-
-            System.out.println(playlist);
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-        }
-
-
-        System.out.println("Enter music here : ");
-
-        try{
-            BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
-            String music = bufferRead.readLine();
-
-            System.out.println(music);
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-        }
-
-        
-
-        if(plNum==-1){
-            int i = numPl(playLists);
-        }
+public class Main {
+    public static void main(String[] args) {
+        AudioPlayer player = new AudioPlayer();
+		
+        player.setFormatStrategy("MP3", new MP3FormatStrategy());
+        player.setFormatStrategy("WAV", new WAVFormatStrategy());
+        player.setFormatStrategy("FLAC", new FLACFormatStrategy());
+		
+		player.setPlayOrderStrategy("NORMAL", new NormalPlayOrderStrategy());
+		player.setPlayOrderStrategy("SHUFFLE", new ShufflePlayOrderStrategy());
+		player.setPlayOrderStrategy("REPEAT", new RepeatPlayOrderStrategy());
+		
+		player.setPlayOrder("NORMAL");
+        player.play(Arrays.asList("song1.mp3", "song2.wav", "song3.flac")); //playlist 1
+		player.setPlayOrder("SHUFFLE");
+        player.play(Arrays.asList("song1.wav", "song2.flac", "song3.wav")); //playlist 2
+		player.setPlayOrder("REPEAT");
+        player.play(Arrays.asList("song1.flac", "song2.mp3", "song3.flac")); //playlist 3
     }
 }

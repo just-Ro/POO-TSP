@@ -25,23 +25,16 @@ public class Main{
         System.out.println("Program started");
         
         // debug without command line arguments
-        String[] customArgs = initCustomArgs("-r");
+        String[] customArgs = initCustomArgs("generate");
 
         Args params = new Args(customArgs);   // Parse command line arguments
-        
-        if(params.readMode()){
-            // Read mode
-            System.out.println("modo -r");
-            MatrixGraph graph = new MatrixGraph(params.nodes, params.maxEdgeWeight);
-            System.out.print(graph);
 
-        }else if(params.fileMode()){
-            // File mode
-            MatrixGraph graph = new MatrixGraph(params.nodes);
-            graph.readGraph(params.file);
+        WeightGraph graph = new WeightGraph();
+        graph.insertGraphCreationStrat("generate", new GraphGeneratorStrategy());
+        graph.insertGraphCreationStrat("read file", new GraphReaderStrategy());
+        graph.setGraphCreationStrat(params.mode);
+        graph.createGraph(params.nodes, params.maxEdgeWeight, params.file);
         
-        }
-
         Colony col = new Colony(params.colonySize,params.nestNode);
         Simulator sim = new Simulator(params, col);
     }
@@ -52,7 +45,7 @@ public class Main{
     }
 
     public static String[] initCustomArgs(String mode){
-        if(mode.equals("-r")){
+        if(mode.equals("generate")){
             String[] customArgs = new String[12];
             customArgs[0] = new String("-r");
             customArgs[1] = new String("5");

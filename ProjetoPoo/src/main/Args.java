@@ -8,8 +8,7 @@ public class Args{
     public int nodes, maxEdgeWeight, nestNode;
     public double alfa, beta, delta, eta, p, pheromoneLevel, colonySize, finalInstant;
     public String file;
-    //private String[] args;
-    private String mode;
+    public String mode;
 
     public Args(String[] args){
         if(args.length < 2){
@@ -27,7 +26,7 @@ public class Args{
             
         }else if(option.equals("-f")){
             this.file = args[1];
-            this.mode = new String("file");
+            this.mode = new String("read file");
 
             this.readFromFile(args);
             
@@ -39,7 +38,7 @@ public class Args{
 
     private void readFromArgs(String[] args){
         this.file = "";
-        this.mode = new String("read");
+        this.mode = new String("generate");
         this.nodes = Integer.parseInt(args[1]);
         this.maxEdgeWeight = Integer.parseInt(args[2]); //Maximum edge weight
         this.nestNode = Integer.parseInt(args[3]);

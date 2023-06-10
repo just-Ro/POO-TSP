@@ -1,9 +1,10 @@
 package simulation;
 
-import java.util.Random;
+import java.util.*;
 
 import ant_colony_optimization.*;
 import main.Args;
+import graph.*;
 
 public class Simulator {
     
@@ -13,6 +14,8 @@ public class Simulator {
     double currentTime;
     Colony col;
     double delta;
+    private Map<String,IGraphFillStrategy> graphCreators;
+    private IGraphFillStrategy graphCreatorStrat;
     
     
     //Inicializacao - 1 evento na PEC por cada formiga na colonia
@@ -21,6 +24,8 @@ public class Simulator {
     //Eventos: Movimento, Evaporacao, /20 do tempo
     
     public Simulator(Args params, Colony col){
+        this.graphCreators = new HashMap<>();
+
         this.simulationTime = params.finalInstant;
         this.col = col;
         this.currentTime = 0;
@@ -54,5 +59,7 @@ public class Simulator {
             pec.addEventPEC(ev);
         }
     }
+
+    
 
 }
