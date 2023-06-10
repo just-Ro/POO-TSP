@@ -14,17 +14,13 @@ public class Simulator {
     double currentTime;
     Colony col;
     double delta;
-    private Map<String,IGraphFillStrategy> graphCreators;
-    private IGraphFillStrategy graphCreatorStrat;
-    
-    
+
     //Inicializacao - 1 evento na PEC por cada formiga na colonia
     //Apos n movimentos, por cada edge do ciclo, criar um evento de evaporacao
     //Simulacao a partir de n movimentos: if ph > 0 -> dar schedule da proxima evaporacao
     //Eventos: Movimento, Evaporacao, /20 do tempo
     
     public Simulator(Args params, Colony col){
-        this.graphCreators = new HashMap<>();
 
         this.simulationTime = params.finalInstant;
         this.col = col;
