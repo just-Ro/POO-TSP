@@ -47,11 +47,11 @@ public class Simulator {
         int i;
         for (i = 0; i < col.ants.size(); i++) {
             //Ant fromiga = col.ants.get(i);
-            Event ev = new Move(this.currentTime+expRandom(delta /*FALTA MULTIPLICAR PELO PESO DA EDGE*/));
+            Event ev = new MoveEvent(this.currentTime+expRandom(delta /*FALTA MULTIPLICAR PELO PESO DA EDGE*/));
             pec.addEventPEC(ev);
         }
         for (i=0; i < 20; i++){
-            Event ev = new Time(this.currentTime + (this.simulationTime*i)/20);
+            Event ev = new TimeEvent(this.currentTime + (this.simulationTime*i)/20);
             pec.addEventPEC(ev);
         }
     }

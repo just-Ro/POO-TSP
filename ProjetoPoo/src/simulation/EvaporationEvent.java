@@ -1,10 +1,10 @@
 package simulation;
 
-public class Move implements Event{
+public class EvaporationEvent implements Event{
 
     private double eventTime;
 
-        public Move(double time){
+    public EvaporationEvent(double time){
         this.eventTime = time;
         handleEvent();
     }
@@ -20,5 +20,6 @@ public class Move implements Event{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateSimulationState'");
     }
-    
+
+
 }

@@ -1,16 +1,17 @@
 package simulation;
 
-public class Evaporation implements Event{
+public class TimeEvent implements Event{
 
     private double eventTime;
 
-    public Evaporation(double time){
+    public TimeEvent(double time){
         this.eventTime = time;
         handleEvent();
     }
-
-    @Override
+    
+        @Override
     public void handleEvent() {
+        System.out.println("oi, passou 1/20 do time :)");
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'handleEvent'");
     }
@@ -20,6 +21,5 @@ public class Evaporation implements Event{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateSimulationState'");
     }
-
-
+    
 }
