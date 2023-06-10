@@ -1,12 +1,17 @@
 package simulation;
 
-public class EvaporationEvent implements Event{
+public class EvaporationEvent implements IEvent{
 
     private double eventTime;
 
     public EvaporationEvent(double time){
         this.eventTime = time;
         handleEvent();
+    }
+
+    @Override
+    public double getEventTime(){
+        return eventTime;
     }
 
     @Override

@@ -1,5 +1,5 @@
 package graph;
 
-public interface IGraphFillStrategy {
+public interface IGraphCreationStrategy {
     public void fill(WeightGraph graph, Integer nodes, Integer maxWeight, String file);
 }

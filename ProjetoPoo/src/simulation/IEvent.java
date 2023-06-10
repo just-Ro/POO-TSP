@@ -1,6 +1,6 @@
 package simulation;
 
-public interface Event {
+public interface IEvent {
 
     public double getEventTime();
     public void handleEvent();

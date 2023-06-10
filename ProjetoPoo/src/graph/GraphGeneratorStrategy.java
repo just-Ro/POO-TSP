@@ -2,7 +2,7 @@ package graph;
 
 import java.util.*;
 
-public class GraphGeneratorStrategy implements IGraphFillStrategy{
+public class GraphGeneratorStrategy implements IGraphCreationStrategy{
 
     @Override
     public void fill(WeightGraph graph, Integer nodes, Integer maxWeight, String file) {
@@ -28,7 +28,7 @@ public class GraphGeneratorStrategy implements IGraphFillStrategy{
         
         // Add first element to the end to create a cycle
         array.add(array.get(0));
-
+        // oioi
         // Add pairs as edges
         for (int i=0; i<nodes; i++){
             graph.addEdge(array.get(i), array.get(i+1), rand.nextInt(maxWeight)+1); // 1->maxWeight

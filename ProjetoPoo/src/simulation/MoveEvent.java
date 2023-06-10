@@ -1,18 +1,25 @@
 package simulation;
 
-public class MoveEvent implements Event{
+public class MoveEvent implements IEvent{
 
     private double eventTime;
 
-        public MoveEvent(double time){
+    public MoveEvent(double time){
         this.eventTime = time;
-        handleEvent();
+    }
+
+    @Override
+    public double getEventTime(){
+        return eventTime;
     }
 
     @Override
     public void handleEvent() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'handleEvent'");
+
+        //Programar proximo move Event
+        
     }
 
     @Override

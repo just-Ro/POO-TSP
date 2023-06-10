@@ -3,8 +3,8 @@ package graph;
 import java.util.*;
 
 public class WeightGraph extends AGraph<Integer,Integer>{
-    private Map<String,IGraphFillStrategy> graphCreators;
-    private IGraphFillStrategy graphCreatorStrat;
+    private Map<String,IGraphCreationStrategy> graphCreators;
+    private IGraphCreationStrategy graphCreatorStrat;
 
 	public WeightGraph(){
 		super(true);
@@ -38,7 +38,7 @@ public class WeightGraph extends AGraph<Integer,Integer>{
 		return builder.toString();
 	}
 
-	public void insertGraphCreationStrat(String mode, IGraphFillStrategy strat){
+	public void insertGraphCreationStrat(String mode, IGraphCreationStrategy strat){
         this.graphCreators.put(mode, strat);
     }
 

@@ -1,15 +1,20 @@
 package simulation;
 
-public class TimeEvent implements Event{
+public class TimeEvent implements IEvent{
 
     private double eventTime;
 
     public TimeEvent(double time){
         this.eventTime = time;
-        handleEvent();
+        
+    }
+
+    @Override
+    public double getEventTime(){
+        return eventTime;
     }
     
-        @Override
+    @Override
     public void handleEvent() {
         System.out.println("oi, passou 1/20 do time :)");
         // TODO Auto-generated method stub
