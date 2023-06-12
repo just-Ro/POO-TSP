@@ -1,9 +1,8 @@
 package ant_colony_optimization;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
+
 import graph.*;
-import java.util.Random;
 
 public class Ant{
     protected List<Integer> path;
@@ -29,7 +28,7 @@ public class Ant{
         return name;
     }
 
-    public void nextNode(Edge[][] matrix, int nodes, double alfa, double beta){
+    public void nextNode(AGraph<Integer,Double> graph, IMAgraph<Integer,Double> phero, Map<Integer, Map<Integer, Double> > map, int nodes, double alfa, double beta){
         int i=0, j=0, aux=0;
         boolean cicle = false;
         double totalChance = 0, currentChance = 0;
@@ -38,7 +37,9 @@ public class Ant{
         
         // considera todos os nos existentes aos quais ele tenha uma edge e pelos quais nao tenha passado
         while(i<nodes){
-            if(matrix[currentNode-1][i].getWeight()!=0){
+            
+            if(graph.hasEdge(currentNode-1,i)){
+            // if(matrix[currentNode-1][i].getWeight()!=0){
                 for(j=0; j<pathSize; j++){
                     if(path.get(j).equals(i)){
                         j=-1;
@@ -47,8 +48,10 @@ public class Ant{
                 }
                 if(j==-1) break;
                 next.add(aux, i);
+                double edgeValue = graph.getEdge(currentNode-1, i);
+                double pheromoneValue = phero.getModValue(currentNode - 1, i);
                 // (alfa+pheromones)/(beta+weight)
-                chance.add(aux,(alfa+matrix[currentNode-1][i].getPheromones())/(beta+matrix[currentNode-1][i].getWeight()));
+                chance.add(aux,(alfa+pheromoneValue)/(beta+edgeValue));
                 totalChance+=chance.get(aux);
                 aux++;
             }
@@ -57,10 +60,12 @@ public class Ant{
         // se nao tiver nenhum no pelo qual nao tenha passado escolhe um pelo qual ja tenha passado
         if(aux==0){
             while(i<nodes){
-                if(matrix[currentNode-1][i].getWeight()!=0){
+                if(graph.hasEdge(currentNode-1,i)){
                     next.add(aux, i);
+                    double edgeValue = graph.getEdge(currentNode-1, i);
+                    double pheromoneValue = phero.getModValue(currentNode - 1, i);
                     // (alfa+pheromones)/(beta+weight)
-                    chance.add(aux,(alfa+matrix[currentNode-1][i].getPheromones())/(beta+matrix[currentNode-1][i].getWeight()));
+                    chance.add(aux,(alfa+pheromoneValue)/(beta+edgeValue));
                     totalChance+=chance.get(aux);
                     aux++;
                 }
