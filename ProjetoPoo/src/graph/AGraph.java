@@ -2,25 +2,26 @@ package graph;
 
 import java.util.*;
 
-public class AGraph<T,E> implements IGraph<T, E> {
+public class AGraph<N,E> implements IGraph<N, E> {
 
 	// We use Hashmap to store the edges in the graph
-	private Map<T, Map<T, E> > map = new HashMap<>();
+	private Map<N, Map<N, E> > map;
 	private boolean bidirectional = false;
 
 	public AGraph(boolean bidirectional){
 		this.bidirectional = bidirectional;
+		this.map = new HashMap<>();
 	}
 
 	// This function adds a new node to the graph
 	@Override
-	public void addNode(T node){
-		this.map.put(node, new HashMap<T,E>());
+	public void addNode(N node){
+		this.map.put(node, new HashMap<N,E>());
 	}
 
 	// This function adds the edge from source to destination
 	@Override
-	public void addEdge(T source, T destination, E edge){
+	public void addEdge(N source, N destination, E edge){
 
 		if (!this.map.containsKey(source))
 			addNode(source);
@@ -41,7 +42,7 @@ public class AGraph<T,E> implements IGraph<T, E> {
 	@Override
 	public int getEdgeCount(){
 		int count = 0;
-		for (T v : this.map.keySet()) {
+		for (N v : this.map.keySet()) {
 			count += getEdgeCount(v);
 		}
 		if (this.bidirectional == true) {
@@ -52,37 +53,37 @@ public class AGraph<T,E> implements IGraph<T, E> {
 
 	// This function gives the count of edges connected to a specific node
 	@Override
-	public int getEdgeCount(T v){
+	public int getEdgeCount(N v){
 		return this.map.get(v).size();
 	}
 
 	// This function gives whether a node is present or not
 	@Override
-	public boolean hasNode(T node){
+	public boolean hasNode(N node){
 		return this.map.containsKey(node);
 	}
 
 	// This function gives whether an edge is present or not
 	@Override
-	public boolean hasEdge(T source, T destination){
+	public boolean hasEdge(N source, N destination){
 		return this.map.get(source).containsKey(destination);
 	}
 
 	// This function gives a set of all nodes
 	@Override
-	public Set<T> getNodes(){
+	public Set<N> getNodes(){
 		return this.map.keySet();
 	}
 
 	// This function gives the set of nodes adjacent to a particular node
 	@Override
-	public Set<T> getNeighbours(T v){
+	public Set<N> getNeighbours(N v){
 		return this.map.get(v).keySet();
 	}
 
 	// This function gives the edge present from source to destination or null if no edge found
 	@Override
-	public E getEdge(T source, T destination){
+	public E getEdge(N source, N destination){
 		if(hasEdge(source, destination))
 			return this.map.get(source).get(destination);
 		else
@@ -91,7 +92,7 @@ public class AGraph<T,E> implements IGraph<T, E> {
 
 	// This function updates the edge from source to destination
 	@Override
-	public void setEdge(T source, T destination, E edge) {
+	public void setEdge(N source, N destination, E edge) {
 		this.map.get(source).put(destination, edge);
 		if (this.bidirectional == true) {
 			this.map.get(destination).put(source, edge);

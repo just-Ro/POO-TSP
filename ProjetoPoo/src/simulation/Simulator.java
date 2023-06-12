@@ -30,10 +30,10 @@ public class Simulator {
         this.wGraph = wGraph;
         Init();
         this.pec = new PEC();
-        while(this.currentTime < this.simulationTime){
-            
+        while(this.currentTime < this.simulationTime){ 
             //Simulate current event
             currentEvent = pec.nextEventPEC();
+            currentEvent.handleEvent();
         }
     }
     
@@ -49,8 +49,8 @@ public class Simulator {
         int i;
         for (i = 0; i < col.ants.size(); i++) {
             Ant fromiga = col.ants.get(i);
-            int dest = fromiga.nextNode(wGraph,params.nestNode,params.alfa,params.beta);
-            IEvent ev = new MoveEvent(this.currentTime+expRandom(delta*this.wGraph.getEdge(params.nestNode, dest)));
+            int dest = fromiga.nextNode(params.nodes,params.alfa,params.beta);
+            IEvent ev = new MoveEvent(this.currentTime+expRandom(delta*this.wGraph.getEdge(params.nestNode, dest)), fromiga,params.nodes,params.alfa,params.beta,params.delta);
             pec.addEventPEC(ev);
         }
         for (i=0; i < 20; i++){
@@ -58,7 +58,6 @@ public class Simulator {
             pec.addEventPEC(ev);
         }
     }
-
     
 
 }

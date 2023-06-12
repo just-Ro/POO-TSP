@@ -23,13 +23,17 @@ public class Ant{
         this.phero=phero;
     }
 
+    public int getCurrentNode(){
+        return currentNode;
+    }
+
     public void travel(int node){
         path.add(pathSize, node);
         pathSize += 1;
         currentNode = node;
     }
 
-    public String antName(){
+    public String getAntName(){
         return name;
     }
 
@@ -90,7 +94,7 @@ public class Ant{
         }
         // escolhe aleatoriamente o proximo no
         Random random = new Random();
-        double choose = ( random.nextDouble() % 10000 ) / 100 ;
+        Double choose = ( random.nextDouble() % 10000 ) / 100 ;
         for(i=0; i<aux; i++){
             if(choose<chance.get(i)){
                 travel(next.get(i));

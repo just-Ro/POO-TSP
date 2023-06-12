@@ -3,6 +3,7 @@ package simulation;
 public class EvaporationEvent implements IEvent{
 
     private double eventTime;
+    public String eventType = "Evaporation";
 
     public EvaporationEvent(double time){
         this.eventTime = time;
