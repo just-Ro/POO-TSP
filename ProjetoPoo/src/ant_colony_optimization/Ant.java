@@ -28,7 +28,7 @@ public class Ant{
         return name;
     }
 
-    public void nextNode(AGraph<Integer,Double> graph, IMAgraph<Integer,Double> phero, Map<Integer, Map<Integer, Double> > map, int nodes, double alfa, double beta){
+    public void nextNode(AGraph<Integer,Double> graph, IMEgraph<Integer,Double> phero, Map<Integer, Map<Integer, Double> > map, int nodes, double alfa, double beta){
         int i=0, j=0, aux=0;
         boolean cicle = false;
         double totalChance = 0, currentChance = 0;
