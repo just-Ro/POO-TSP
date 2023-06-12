@@ -18,7 +18,7 @@ public class AGraph<T,E> implements IGraph<T, E> {
 		this.map.put(node, new HashMap<T,E>());
 	}
 
-	// This function adds the edge between source to destination
+	// This function adds the edge from source to destination
 	@Override
 	public void addEdge(T source, T destination, E edge){
 
@@ -28,10 +28,7 @@ public class AGraph<T,E> implements IGraph<T, E> {
 		if (!this.map.containsKey(destination))
 			addNode(destination);
 
-		this.map.get(source).put(destination, edge);
-		if (this.bidirectional == true) {
-			this.map.get(destination).put(source, edge);
-		}
+		setEdge(source, destination, edge);
 	}
 
 	// This function gives the count of nodes
@@ -72,20 +69,32 @@ public class AGraph<T,E> implements IGraph<T, E> {
 	}
 
 	// This function gives a set of all nodes
+	@Override
 	public Set<T> getNodes(){
 		return this.map.keySet();
 	}
 
 	// This function gives the set of nodes adjacent to a particular node
+	@Override
 	public Set<T> getNeighbours(T v){
 		return this.map.get(v).keySet();
 	}
 
 	// This function gives the edge present from source to destination or null if no edge found
+	@Override
 	public E getEdge(T source, T destination){
 		if(hasEdge(source, destination))
 			return this.map.get(source).get(destination);
 		else
 			return null;
+	}
+
+	// This function updates the edge from source to destination
+	@Override
+	public void setEdge(T source, T destination, E edge) {
+		this.map.get(source).put(destination, edge);
+		if (this.bidirectional == true) {
+			this.map.get(destination).put(source, edge);
+		}
 	}
 }

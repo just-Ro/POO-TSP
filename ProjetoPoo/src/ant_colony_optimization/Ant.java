@@ -9,13 +9,18 @@ public class Ant{
     protected int pathSize=0;
     protected int currentNode = -1;
     private String name;
+    private WeightGraph graph;
+    private PheroGraph phero;
 
-    public Ant(int n1){
+    public Ant(int n1, WeightGraph graph, PheroGraph phero){
         this.path = new ArrayList<Integer>();
         path.add(n1);
         currentNode=n1;
         Names names = new Names();
         name = names.setName();
+        // initialized by reference
+        this.graph=graph;
+        this.phero=phero;
     }
 
     public void travel(int node){
@@ -28,7 +33,7 @@ public class Ant{
         return name;
     }
 
-    public void nextNode(AGraph<Integer,Double> graph, IMEgraph<Integer,Double> phero, Map<Integer, Map<Integer, Double> > map, int nodes, double alfa, double beta){
+    public void nextNode(int nodes, double alfa, double beta){
         int i=0, j=0, aux=0;
         boolean cicle = false;
         double totalChance = 0, currentChance = 0;
@@ -48,8 +53,8 @@ public class Ant{
                 }
                 if(j==-1) break;
                 next.add(aux, i);
-                double edgeValue = graph.getEdge(currentNode-1, i);
-                double pheromoneValue = phero.getModValue(currentNode - 1, i);
+                Double edgeValue = (double) graph.getEdge(currentNode-1, i);
+                Double pheromoneValue = phero.getEdge(currentNode - 1, i);
                 // (alfa+pheromones)/(beta+weight)
                 chance.add(aux,(alfa+pheromoneValue)/(beta+edgeValue));
                 totalChance+=chance.get(aux);
@@ -62,8 +67,8 @@ public class Ant{
             while(i<nodes){
                 if(graph.hasEdge(currentNode-1,i)){
                     next.add(aux, i);
-                    double edgeValue = graph.getEdge(currentNode-1, i);
-                    double pheromoneValue = phero.getModValue(currentNode - 1, i);
+                    Double edgeValue = (double) graph.getEdge(currentNode-1, i);
+                    Double pheromoneValue = phero.getEdge(currentNode - 1, i);
                     // (alfa+pheromones)/(beta+weight)
                     chance.add(aux,(alfa+pheromoneValue)/(beta+edgeValue));
                     totalChance+=chance.get(aux);

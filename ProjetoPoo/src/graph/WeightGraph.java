@@ -10,6 +10,7 @@ public class WeightGraph extends AGraph<Integer,Integer>{
 		super(true);
 	}
 
+	// This function initializes the graph with the given strategy
 	public void createGraph(Integer nodes, Integer maxWeight, String file){
 		if (graphCreatorStrat == null) {
             throw new IllegalStateException("Strategy is not set. Please set the strategy before executing.");
@@ -17,7 +18,7 @@ public class WeightGraph extends AGraph<Integer,Integer>{
 		graphCreatorStrat.fill(this, nodes, maxWeight, file);
 	}
 
-    // Prints the adjancency list of each node.
+    // This function prints the adjancency list of each node.
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

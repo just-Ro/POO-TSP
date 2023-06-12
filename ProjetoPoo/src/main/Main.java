@@ -34,8 +34,9 @@ public class Main{
         graph.insertGraphCreationStrat("read file", new GraphReaderStrategy());
         graph.setGraphCreationStrat(params.mode);
         graph.createGraph(params.nodes, params.maxEdgeWeight, params.file);
-
-        Colony col = new Colony(params.colonySize,params.nestNode);
+        
+        PheroGraph phero = new PheroGraph(true);
+        Colony col = new Colony(params.colonySize,params.nestNode, graph, phero);
         Simulator sim = new Simulator(params, col, graph);
     }
 

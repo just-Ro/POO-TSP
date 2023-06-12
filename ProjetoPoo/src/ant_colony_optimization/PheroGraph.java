@@ -1,0 +1,44 @@
+package ant_colony_optimization;
+
+import java.util.*;
+
+import graph.AGraph;
+
+/*
+ *  Modifying edges graph
+ */
+public class PheroGraph extends AGraph<Integer, Double> {
+
+
+    public PheroGraph(boolean bidirectional) {
+        super(bidirectional);
+    }
+
+    // This function updates an edge by adding a value to it
+    public void updateEdge(Integer source, Integer destination, Double value){
+        if(hasEdge(source, destination)){
+            setEdge(source, destination, getEdge(source, destination) + value);
+        }
+    }
+
+    // This function prints the adjancency list of each node.
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+
+		Set<Integer> nodes = getNodes();
+		for( Integer source : nodes){
+			builder.append(source.toString()).append(": ");	// Name of the node
+			Set<Integer> neighbours = getNeighbours(source);
+			for(Integer destination : neighbours){
+				builder.append("(");
+				builder.append(destination.toString());
+				builder.append(" ");
+				builder.append(String.format("%.2f", getEdge(source, destination)));
+				builder.append(") ");
+			}
+			builder.append("\n");
+		}
+		return builder.toString();
+	}
+}
