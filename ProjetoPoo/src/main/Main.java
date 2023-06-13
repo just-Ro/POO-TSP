@@ -38,21 +38,19 @@ public class Main{
         Colony col = new Colony(graph, params.colonySize,params.nestNode, params.nodes, params.alfa,params.beta);
 
         Simulator sim = new Simulator(params.finalInstant);
-        List<IEvent> eventList = new ArrayList<IEvent>();
-        init(params,col, eventList);
-        sim.addToPEC(eventList);
+        init(params,col, sim);
+
         sim.run();
+        // Above is main's last command
     }
 
-    public static void init(Args params, Colony col, List<IEvent> eventList){
-        int i;
-        for (i = 0; i < col.ants.size(); i++) {
-            Ant fromiga = col.ants.get(i);
+    public static void init(Args params, Colony col, Simulator sim){
+        for (Ant fromiga : col.ants){
             IEvent ev = new MoveEvent(0, fromiga, params.delta);
-            eventList.add(ev);
+            sim.addToPEC(ev);
         }
         IEvent ev = new TimeEvent(0, params.finalInstant);
-        eventList.add(ev);
+        sim.addToPEC(ev);
     }
 
     public static void clearScreen() {  

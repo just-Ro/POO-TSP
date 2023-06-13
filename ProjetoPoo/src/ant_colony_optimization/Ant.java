@@ -1,8 +1,9 @@
 package ant_colony_optimization;
 
-import java.util.*;
-
-import graph.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
+import graph.WeightGraph;
 
 public class Ant{
     private int currentNode = -1;
@@ -106,7 +107,7 @@ public class Ant{
             chance.set(aux, Math.round(chance.get(i) * 100.0) / 100.0);
         }
         // escolhe aleatoriamente o proximo no
-        Random random = new Random();
+        Random random = RandomSingleton.getInstance();
         double choose = ( random.nextDouble() % 10000 ) / 100 ;
         for(i=0; i<aux; i++){
             if(choose<chance.get(i)){
@@ -148,7 +149,7 @@ public class Ant{
     }
 
     public double phero(){
-
+        throw new UnsupportedOperationException("Unimplemented method 'phero'");
     }
 
     int edgeWeight(){

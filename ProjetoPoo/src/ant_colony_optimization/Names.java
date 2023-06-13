@@ -3,7 +3,7 @@ package ant_colony_optimization;
 import java.util.Random;
 
 public class Names {
-    String[] names = {
+    static String[] names = {
         "James", "John", "Robert", "Michael", "William", "David", "Joseph", "Charles", "Thomas",
         "Daniel", "Matthew", "George", "Andrew", "Edward", "Henry", "Patrick", "Richard",
         "Benjamin", "Peter", "Stephen", "Paul", "Frank", "Anthony", "Kenneth", "Steven", "Brian",

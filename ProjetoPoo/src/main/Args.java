@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Args{
     public int nodes, maxEdgeWeight, nestNode, colonySize;
-    public double alfa, beta, delta, eta, p, pheromoneLevel, finalInstant;
+    public double alfa, beta, delta, eta, rho, pheromoneLevel, finalInstant;
     public String file;
     public String mode;
 
@@ -46,7 +46,7 @@ public class Args{
         this.beta = Double.parseDouble(args[5]);
         this.delta = Double.parseDouble(args[6]);
         this.eta =Double.parseDouble(args[7]);
-        this.p = Double.parseDouble(args[8]);
+        this.rho = Double.parseDouble(args[8]);
         this.pheromoneLevel = Double.parseDouble(args[9]);
         this.colonySize = Integer.parseInt(args[10]);
         this.finalInstant = Double.parseDouble(args[11]);
@@ -65,7 +65,7 @@ public class Args{
             this.beta = scanner.nextDouble();
             this.delta = scanner.nextDouble();
             this.eta = scanner.nextDouble();
-            this.p = scanner.nextDouble();
+            this.rho = scanner.nextDouble();
             this.pheromoneLevel = scanner.nextDouble();
             this.colonySize = scanner.nextInt();
             this.finalInstant = scanner.nextDouble();

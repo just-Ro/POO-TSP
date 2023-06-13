@@ -1,12 +1,12 @@
 package ant_colony_optimization;
 
-import java.util.*;
+import java.util.Random;
 import simulation.IEvent;
 
 public class MoveEvent implements IEvent{
 
     private double eventTime;
-    public Ant formiga;
+    private Ant formiga;
     private double delta;
     
 
@@ -36,10 +36,10 @@ public class MoveEvent implements IEvent{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateSimulationState'");
     }
-    
-    private static Random random = new Random();
+
 
     private static double expRandom(double m) {
+        Random random = RandomSingleton.getInstance();
         double next = random.nextDouble();
         return -m*Math.log(1.0-next);
     }

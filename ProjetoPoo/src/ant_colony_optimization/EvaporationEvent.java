@@ -1,23 +1,25 @@
 package ant_colony_optimization;
 
 import java.util.Random;
-
 import simulation.IEvent;
 
-//Inicializacao - 1 evento na PEC por cada formiga na colonia
 //Apos n movimentos, por cada edge do ciclo, criar um evento de evaporacao
 //Simulacao a partir de n movimentos: if ph > 0 -> dar schedule da proxima evaporacao
-//Eventos: Movimento, Evaporacao, /20 do tempo
 
 public class EvaporationEvent implements IEvent{
 
     private double eventTime;
-    private double rho;
+    private double eta, rho;
+    private int source, dest;
+    private PheroGraph pGraph;
 
-    public EvaporationEvent(double time, double rho){
+    public EvaporationEvent(double time, double eta, double rho, int source, int dest, PheroGraph pGraph){
         this.eventTime = time;
-        this.rho = rho; 
-        handleEvent();
+        this.eta = eta;
+        this.rho = rho;
+        this.dest = dest;
+        this.source = source;
+        this.pGraph = pGraph;
     }
 
     @Override
@@ -27,7 +29,10 @@ public class EvaporationEvent implements IEvent{
 
     @Override
     public void handleEvent() {
-        this.eventTime += expRandom(rho);
+        
+        this.pGraph.updateEdge(source, dest, -this.rho);
+        this.eventTime += expRandom(eta);
+
     }
 
     @Override
@@ -36,9 +41,8 @@ public class EvaporationEvent implements IEvent{
         throw new UnsupportedOperationException("Unimplemented method 'updateSimulationState'");
     }
 
-    static Random random = new Random();
-
     public static double expRandom(double m) {
+        Random random = RandomSingleton.getInstance();
         double next = random.nextDouble();
         return -m*Math.log(1.0-next);
     }

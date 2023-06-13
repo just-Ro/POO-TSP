@@ -1,6 +1,6 @@
 package ant_colony_optimization;
 
-import java.util.*;
+import java.util.Set;
 
 import graph.AGraph;
 
@@ -8,8 +8,35 @@ import graph.AGraph;
  *  Modifying edges graph
  */
 public class PheroGraph extends AGraph<Integer, Double> {
+/*
+# Comentários do feijão
+		
+	 I
+	 A
+Iw W   P Ip
 
+I 
+A implements I 
 
+Iw extends I 
+w extends A implements Iw
+
+api
+	graph
+		I
+		Iw
+		Ip
+	simulation
+		....
+
+impl
+	graph
+		...
+	simulation
+		...
+	aco
+
+*/
     public PheroGraph(boolean bidirectional) {
         super(bidirectional);
     }

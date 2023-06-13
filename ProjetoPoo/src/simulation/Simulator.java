@@ -1,6 +1,6 @@
 package simulation;
 
-import java.util.*;
+import java.util.List;
 
 public class Simulator {
     
@@ -25,14 +25,15 @@ public class Simulator {
             //Simulate current event
             this.currentEvent = pec.nextEventPEC();
             this.currentEvent.handleEvent();
-            pec.addEventPEC(this.currentEvent);
+            if(this.currentEvent.getEventTime() < this.simulationTime){
+                // Only adds to PEC events within simulationTime
+                pec.addEventPEC(this.currentEvent);
+            }
         }
     }
 
-    public void addToPEC(List<IEvent> eventList){
-        for (IEvent ev : eventList) {
-            pec.addEventPEC(ev);
-        }
+    public void addToPEC(IEvent event){
+        pec.addEventPEC(event);
     }
 
 }
