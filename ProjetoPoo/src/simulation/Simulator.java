@@ -49,7 +49,7 @@ public class Simulator {
         int i;
         for (i = 0; i < col.ants.size(); i++) {
             Ant fromiga = col.ants.get(i);
-            int dest = fromiga.nextNode(wGraph,params.nestNode,params.alfa,params.beta);
+            int dest = fromiga.nextNode(params.nestNode,params.alfa,params.beta);
             IEvent ev = new MoveEvent(this.currentTime+expRandom(delta*this.wGraph.getEdge(params.nestNode, dest)));
             pec.addEventPEC(ev);
         }

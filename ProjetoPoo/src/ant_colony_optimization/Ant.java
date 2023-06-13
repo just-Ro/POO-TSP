@@ -5,9 +5,10 @@ import java.util.*;
 import graph.*;
 
 public class Ant{
-    protected List<Integer> path;
-    protected int pathSize=0;
-    protected int currentNode = -1;
+    private List<Integer> path;
+    private int pathSize=0;
+    private int currentNode = -1;
+    private int nextNode = -1;
     private String name;
     private WeightGraph graph;
     private PheroGraph phero;
@@ -23,22 +24,35 @@ public class Ant{
         this.phero=phero;
     }
 
-    public void travel(int node){
-        path.add(pathSize, node);
+    // verify function return to know if the travel went through or if there was no chosen node yet
+    public int travel(int nextNode){
+        if(currentNode==nextNode)
+            return -1;
+        path.add(pathSize, nextNode);
         pathSize += 1;
-        currentNode = node;
+        currentNode = nextNode;
+        return 0;
     }
 
     public String antName(){
         return name;
     }
 
-    public void nextNode(int nodes, double alfa, double beta){
+    public int currentNode(){
+        return path.get(pathSize-1);
+    }
+
+    public int nextNode(int nodes, double alfa, double beta){
         int i=0, j=0, aux=0;
         boolean cicle = false;
         double totalChance = 0, currentChance = 0;
         List<Integer> next = new ArrayList<>();
         List<Double> chance = new ArrayList<>();
+
+        // only chooses a next node after traveling
+        if(nextNode!=currentNode){
+            return nextNode;
+        }
         
         // considera todos os nos existentes aos quais ele tenha uma edge e pelos quais nao tenha passado
         while(i<nodes){
@@ -93,7 +107,7 @@ public class Ant{
         double choose = ( random.nextDouble() % 10000 ) / 100 ;
         for(i=0; i<aux; i++){
             if(choose<chance.get(i)){
-                travel(next.get(i));
+                nextNode = i;
                 break;
             }
         }
@@ -111,5 +125,6 @@ public class Ant{
                 }
             }
         }
+        return nextNode;
     }
 }
