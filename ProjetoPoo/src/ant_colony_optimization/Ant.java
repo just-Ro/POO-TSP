@@ -24,20 +24,11 @@ public class Ant{
         this.phero=phero;
     }
 
-<<<<<<< HEAD
     // verify function return to know if the travel went through or if there was no chosen node yet
     public int travel(int nextNode){
         if(currentNode==nextNode)
             return -1;
         path.add(pathSize, nextNode);
-=======
-    public int getCurrentNode(){
-        return currentNode;
-    }
-
-    public void travel(int node){
-        path.add(pathSize, node);
->>>>>>> 2f2321cad95379b6aa2a946cf15d66a3be63431f
         pathSize += 1;
         currentNode = nextNode;
         return 0;
@@ -47,8 +38,10 @@ public class Ant{
         return name;
     }
 
-    public int currentNode(){
-        return path.get(pathSize-1);
+     * @return
+     */
+    public int getCurrentNode(){
+        return currentNode;
     }
 
     public int nextNode(int nodes, double alfa, double beta){
