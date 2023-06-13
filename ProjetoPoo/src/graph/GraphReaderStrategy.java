@@ -6,7 +6,7 @@ import java.util.*;
 public class GraphReaderStrategy implements IGraphCreationStrategy{
 
     @Override
-    public void fill(WeightGraph graph, Integer nodes, Integer maxWeight, String file) {
+    public void fill(WeightGraph graph, int nodes, int maxWeight, String file) {
         try{
             File f = new File(file);
             Scanner scanner = new Scanner(f);
@@ -15,7 +15,7 @@ public class GraphReaderStrategy implements IGraphCreationStrategy{
             
             for (int i = 0; i < nodes; i++) {
                 for (int j = 0; j < nodes; j++) {
-                    Integer weight = scanner.nextInt();
+                    int weight = scanner.nextInt();
                     if(weight > 0){
                         graph.addEdge(i, j, weight);
                     }

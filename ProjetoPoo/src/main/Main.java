@@ -34,10 +34,25 @@ public class Main{
         graph.insertGraphCreationStrat("read file", new GraphReaderStrategy());
         graph.setGraphCreationStrat(params.mode);
         graph.createGraph(params.nodes, params.maxEdgeWeight, params.file);
-        
-        PheroGraph phero = new PheroGraph(true);
-        Colony col = new Colony(params.colonySize,params.nestNode, graph, phero);
-        Simulator sim = new Simulator(params, col, graph);
+    
+        Colony col = new Colony(graph, params.colonySize,params.nestNode, params.nodes, params.alfa,params.beta);
+
+        Simulator sim = new Simulator(params.finalInstant);
+        List<IEvent> eventList = new ArrayList<IEvent>();
+        init(params,col, eventList);
+        sim.addToPEC(eventList);
+        sim.run();
+    }
+
+    public static void init(Args params, Colony col, List<IEvent> eventList){
+        int i;
+        for (i = 0; i < col.ants.size(); i++) {
+            Ant fromiga = col.ants.get(i);
+            IEvent ev = new MoveEvent(0, fromiga, params.delta);
+            eventList.add(ev);
+        }
+        IEvent ev = new TimeEvent(0, params.finalInstant);
+        eventList.add(ev);
     }
 
     public static void clearScreen() {  

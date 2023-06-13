@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Args{
-    public int nodes, maxEdgeWeight, nestNode;
-    public double alfa, beta, delta, eta, p, pheromoneLevel, colonySize, finalInstant;
+    public int nodes, maxEdgeWeight, nestNode, colonySize;
+    public double alfa, beta, delta, eta, p, pheromoneLevel, finalInstant;
     public String file;
     public String mode;
 
@@ -48,7 +48,7 @@ public class Args{
         this.eta =Double.parseDouble(args[7]);
         this.p = Double.parseDouble(args[8]);
         this.pheromoneLevel = Double.parseDouble(args[9]);
-        this.colonySize = Double.parseDouble(args[10]);
+        this.colonySize = Integer.parseInt(args[10]);
         this.finalInstant = Double.parseDouble(args[11]);
     }
 
@@ -67,7 +67,7 @@ public class Args{
             this.eta = scanner.nextDouble();
             this.p = scanner.nextDouble();
             this.pheromoneLevel = scanner.nextDouble();
-            this.colonySize = scanner.nextDouble();
+            this.colonySize = scanner.nextInt();
             this.finalInstant = scanner.nextDouble();
             // Close the scanner
             scanner.close();

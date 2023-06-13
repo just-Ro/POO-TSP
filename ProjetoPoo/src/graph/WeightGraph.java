@@ -11,7 +11,7 @@ public class WeightGraph extends AGraph<Integer,Integer>{
 	}
 
 	// This function initializes the graph with the given strategy
-	public void createGraph(Integer nodes, Integer maxWeight, String file){
+	public void createGraph(int nodes, int maxWeight, String file){
 		if (graphCreatorStrat == null) {
             throw new IllegalStateException("Strategy is not set. Please set the strategy before executing.");
         }

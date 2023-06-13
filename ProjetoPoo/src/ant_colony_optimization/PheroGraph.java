@@ -15,7 +15,7 @@ public class PheroGraph extends AGraph<Integer, Double> {
     }
 
     // This function updates an edge by adding a value to it
-    public void updateEdge(Integer source, Integer destination, Double value){
+    public void updateEdge(int source, int destination, double value){
         if(hasEdge(source, destination)){
             setEdge(source, destination, getEdge(source, destination) + value);
         }

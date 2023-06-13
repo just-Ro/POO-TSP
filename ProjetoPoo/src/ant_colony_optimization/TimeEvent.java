@@ -1,13 +1,17 @@
-package simulation;
+package ant_colony_optimization;
+
+import simulation.IEvent;
 
 public class TimeEvent implements IEvent{
 
     private double eventTime;
-    public String eventType = "Time";
+    private int counter = 0;
+    private double finalInstant;
 
-    public TimeEvent(double time){
+    public TimeEvent(double time, double finalInstant){
         this.eventTime = time;
-        
+        this.finalInstant=finalInstant;
+        handleEvent();
     }
 
     @Override
@@ -17,8 +21,9 @@ public class TimeEvent implements IEvent{
     
     @Override
     public void handleEvent() {
-        System.out.println("oi, passou 1/20 do time :)");
-        return null;
+        this.counter++;
+        this.eventTime += (counter*finalInstant)/20;
+        System.out.println("oi, passou 1/20 do time :), eventualmente dar print do mpt ciclo hamilton");
     }
 
     @Override
