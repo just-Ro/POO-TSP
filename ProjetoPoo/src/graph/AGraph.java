@@ -2,10 +2,10 @@ package graph;
 
 import java.util.*;
 
-public class AGraph<N,E> implements IGraph<N, E> {
+public abstract class AGraph<N,E> implements IGraph<N, E> {
 
 	// We use Hashmap to store the edges in the graph
-	private Map<N, Map<N, E> > map;
+	protected Map<N, Map<N, E> > map;
 	private boolean bidirectional = false;
 
 	public AGraph(boolean bidirectional){

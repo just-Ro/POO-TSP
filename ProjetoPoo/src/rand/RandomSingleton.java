@@ -1,4 +1,4 @@
-package ant_colony_optimization;
+package rand;
 
 import java.util.Random;
 

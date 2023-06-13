@@ -23,4 +23,8 @@ public class PEC {
         return firstEvent;
     }
 
+    public boolean isEmpty(){
+        return this.eventSet.isEmpty();
+    }
+
 }

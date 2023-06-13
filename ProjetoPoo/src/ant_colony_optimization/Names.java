@@ -117,7 +117,7 @@ public class Names {
         "Weldon", "Westbrook", "Whistler", "Whitby", "Whitcomb", "Whittaker", "Wid", "Wiley",
         "Wilford", "Willow", "Wilton", "Wingy", "Wirt", "Wisdom", "Wissian", "Witton",
         "Wolcott", "Wolf", "Wolfe", "Woodis", "Woodson", "Wulfsige",
-        "Wyclef", "Wynton", "Wynward", "Wyson", "Wythe", "Yardley", "Yeoman", "Yorath", "Yule", "Zani"
+        "Wyclef", "Wynton", "Wynward", "Wyson", "Wythe", "Yardley", "Yeoman", "Yorath", "Yule", "Zani", "Abacate", "Dave"
     };
     
     public String setName(){

@@ -20,6 +20,8 @@ import simulation.*;
  */
 
 public class Main{
+
+    // possivelmente passar classe Args pra aqui flr com stora !!!
     public static void main(String[] args) throws Exception {
         clearScreen();
         System.out.println("Program started");
@@ -35,7 +37,7 @@ public class Main{
         graph.setGraphCreationStrat(params.mode);
         graph.createGraph(params.nodes, params.maxEdgeWeight, params.file);
     
-        Colony col = new Colony(graph, params.colonySize,params.nestNode, params.nodes, params.alfa,params.beta);
+        Colony col = new Colony(graph, params.colonySize,params.nestNode, params.nodes, params.alfa,params.beta, params.pheromoneLevel,params.eta,params.rho);
 
         Simulator sim = new Simulator(params.finalInstant);
         init(params,col, sim);

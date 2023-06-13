@@ -44,8 +44,16 @@ impl
     // This function updates an edge by adding a value to it
     public void updateEdge(int source, int destination, double value){
         if(hasEdge(source, destination)){
-            setEdge(source, destination, getEdge(source, destination) + value);
-        }
+			setEdge(source, destination, getEdge(source, destination) + value);
+        } else {
+			setEdge(source, destination, value);
+		}
+
+		// Pheromone level can't be negative
+		if(getEdge(source,destination) < 0.0){
+			setEdge(source, destination, 0.0);
+		}
+		
     }
 
     // This function prints the adjancency list of each node.

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 import graph.WeightGraph;
+import rand.RandomSingleton;
+import simulation.IEvent;
 
 public class Ant{
     private int currentNode = -1;
@@ -18,7 +20,7 @@ public class Ant{
     private PheroGraph phero;
     private Colony col;
 
-    public Ant(int n1, WeightGraph graph, PheroGraph phero){
+    public Ant(int n1, WeightGraph graph, PheroGraph phero, Colony col){
         this.path = new ArrayList<Integer>();
         path.add(n1);
         this.currentNode = n1;
@@ -27,26 +29,47 @@ public class Ant{
         // initialized by reference
         this.graph=graph;
         this.phero=phero;
+        this.col = col;
     }
 
     // verify function return to know if the travel went through or if there was no chosen node yet
-    public int travel(){
-        if(currentNode==nextNode)
+    public int travel(double eventTime){
+        if(this.currentNode==this.nextNode)
             return -1;
-        pathSize += 1;
-        path.add(pathSize, nextNode);
-        currentNode = nextNode;
+        this.pathSize += 1;
+        path.add(this.pathSize, this.nextNode);
+        this.currentNode = this.nextNode;
+        if(this.hamiltonian){
+            for(int i=0; i<this.pathSize; i++){
+                phero.updateEdge(path.get(i), path.get(i+1), 0);
+                if(phero.getEdge(i,i+1)==0){
+                    IEvent ev = new EvaporationEvent(eventTime, col.getEta(), col.getRho(),i,i+1,phero);
+                    //FALTA ADICIONAR A PEC
+                }
+                
+            }
+            updatePheroGraph();
+            clearPath(0,this.pathSize);
+        }
+        this.hamiltonian=false;
         return 0;
     }
 
     public String getAntName(){
-        return name;
+        return this.name;
     }
 
     public int getCurrentNode(){
-        return currentNode;
+        return this.currentNode;
     }
     
+    public void clearPath(int from, int to){
+        for(int j=from; j<to; j++){
+            path.remove(from);
+        }
+        this.pathSize = from - 1;
+    }
+
     public int nextNode(){
         int i=0, j=0, aux=0;
         boolean cicle = false;
@@ -124,12 +147,7 @@ public class Ant{
                 // if not do this
                 for(j=0; j<pathSize; j++){
                     if(path.get(j).equals(i)){
-                        j++;
-                        int k = j;
-                        for(; j<pathSize+1; j++){
-                            path.remove(k);
-                        }
-                        pathSize = k-1;
+                        clearPath(j+1,pathSize);
                         break;
                     }
                 }
@@ -148,8 +166,15 @@ public class Ant{
         return w;
     }
 
-    public double phero(){
-        throw new UnsupportedOperationException("Unimplemented method 'phero'");
+    public double pheroUpdateValue(){
+        return col.getGama()*col.getTotalWeight()/pathWeight();
+    }
+
+    public void updatePheroGraph(){
+        double pheroValue = pheroUpdateValue();
+        for(int i=0; i<pathSize; i++){
+            phero.updateEdge(path.get(i),path.get(i+1),pheroValue);
+        }
     }
 
     int edgeWeight(){
