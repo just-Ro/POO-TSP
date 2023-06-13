@@ -2,13 +2,13 @@ package graph;
 
 import java.util.Set;
 
-public interface IGraph<T, E> {
+public interface IGraph<N, E> {
 
     // This function adds a new node to the graph
-    public void addNode(T node);
+    public void addNode(N node);
 
     // This function adds the edge from source to destination
-    public void addEdge(T source, T destination, E edge);
+    public void addEdge(N source, N destination, E edge);
 
     // This function gives the count of nodes
     public int getNodeCount();
@@ -17,24 +17,24 @@ public interface IGraph<T, E> {
     public int getEdgeCount();
 
     // This function gives the count of edges connected to a specific node
-    public int getEdgeCount(T v);
+    public int getEdgeCount(N v);
 
     // This function gives whether a node is present or not.
-    public boolean hasNode(T node);
+    public boolean hasNode(N node);
 
     // This function gives whether an edge is present or not.
-    public boolean hasEdge(T source, T destination);
+    public boolean hasEdge(N source, N destination);
 
     // This function gives a set of all nodes
-	public Set<T> getNodes();
+	public Set<N> getNodes();
 
     // This function gives the set of nodes adjacent to a particular node
-	public Set<T> getNeighbours(T v);
+	public Set<N> getNeighbours(N v);
 
     // This function gives the edge present from source to destination or null if no edge found
-	public E getEdge(T source, T destination);
+	public E getEdge(N source, N destination);
 
     // This function updates the edge from source to destination
-    public void setEdge(T source, T destination, E edge);
+    public void setEdge(N source, N destination, E edge);
 
 }

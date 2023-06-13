@@ -1,8 +1,6 @@
 package simulation;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.TreeSet;
 
+import java.util.*;
 
 public class PEC {
     // Pending Event Container
