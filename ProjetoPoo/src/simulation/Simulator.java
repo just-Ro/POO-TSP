@@ -1,7 +1,5 @@
 package simulation;
 
-import java.util.List;
-
 public class Simulator {
     
     private PEC pec;

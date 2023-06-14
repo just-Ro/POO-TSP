@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Args{
+
     public int nodes, maxEdgeWeight, nestNode, colonySize;
     public double alfa, beta, delta, eta, rho, pheromoneLevel, finalInstant;
     public String file;
@@ -84,5 +85,5 @@ public class Args{
     public boolean readMode(){
         return this.mode.equals("read");
     }
-
+    
 }

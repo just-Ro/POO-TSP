@@ -1,6 +1,8 @@
 package graph;
 
-import java.util.*;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Set;
 
 public abstract class AGraph<N,E> implements IGraph<N, E> {
 
@@ -66,6 +68,7 @@ public abstract class AGraph<N,E> implements IGraph<N, E> {
 	// This function gives whether an edge is present or not
 	@Override
 	public boolean hasEdge(N source, N destination){
+		
 		return this.map.get(source).containsKey(destination);
 	}
 
@@ -84,10 +87,11 @@ public abstract class AGraph<N,E> implements IGraph<N, E> {
 	// This function gives the edge present from source to destination or null if no edge found
 	@Override
 	public E getEdge(N source, N destination){
-		if(hasEdge(source, destination))
+		if(hasEdge(source, destination)){
 			return this.map.get(source).get(destination);
-		else
+		}else{
 			return null;
+		}
 	}
 
 	// This function updates the edge from source to destination

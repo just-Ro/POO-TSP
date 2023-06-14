@@ -1,12 +1,13 @@
 package graph;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class GraphReaderStrategy implements IGraphCreationStrategy{
 
     @Override
-    public void fill(WeightGraph graph, int nodes, int maxWeight, String file) {
+    public void fill(WeightedGraph graph, int nodes, int maxWeight, String file) {
         try{
             File f = new File(file);
             Scanner scanner = new Scanner(f);

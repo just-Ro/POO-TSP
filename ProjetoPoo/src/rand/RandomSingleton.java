@@ -1,14 +1,12 @@
 package rand;
 
-import java.util.Random;
-
 public class RandomSingleton {
-    private static Random instance;
-
-    public static Random getInstance(){
+    private static CustomRandom instance;
+    
+    public static CustomRandom getInstance(){
 
         if (instance == null)
-            instance = new Random();
+            instance = new CustomRandom();
 
         return instance;
     }

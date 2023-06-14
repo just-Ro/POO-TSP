@@ -63,17 +63,13 @@ impl
 
 		Set<Integer> nodes = getNodes();
 		for( Integer source : nodes){
-			builder.append(source.toString()).append(": ");	// Name of the node
-			Set<Integer> neighbours = getNeighbours(source);
-			for(Integer destination : neighbours){
-				builder.append("(");
-				builder.append(destination.toString());
+			for(Integer destination : nodes){
+				builder.append(hasEdge(source, destination) ? String.format("%.2f", getEdge(source, destination)) : "0.00");
 				builder.append(" ");
-				builder.append(String.format("%.2f", getEdge(source, destination)));
-				builder.append(") ");
 			}
 			builder.append("\n");
 		}
+
 		return builder.toString();
 	}
 }

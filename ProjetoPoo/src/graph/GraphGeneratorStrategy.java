@@ -1,16 +1,20 @@
 package graph;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.ArrayList;
+import rand.CustomRandom;
+import rand.RandomSingleton;
+
 
 public class GraphGeneratorStrategy implements IGraphCreationStrategy{
 
     @Override
-    public void fill(WeightGraph graph, int nodes, int maxWeight, String file) {
-        Random rand = new Random();
+    public void fill(WeightedGraph graph, int nodes, int maxWeight, String file) {
+        CustomRandom rand = RandomSingleton.getInstance();
         
         // Generate all possible edges with random weights
-        for(int source=0; source<nodes; source++){
-            for(int dest=source+1; dest<nodes; dest++){
+        for(int source=1; source<=nodes; source++){
+            for(int dest=source+1; dest<=nodes; dest++){
                 int weight = rand.nextInt(maxWeight+1); // 0->maxWeight
 
                 if(weight>0){

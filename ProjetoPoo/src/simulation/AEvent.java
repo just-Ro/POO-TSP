@@ -1,7 +1,6 @@
 package simulation;
 
-import java.util.Random;
-
+import rand.CustomRandom;
 import rand.RandomSingleton;
 
 public abstract class AEvent implements IEvent{
@@ -18,7 +17,7 @@ public abstract class AEvent implements IEvent{
     }
 
     protected static double expRandom(double m) {
-        Random random = RandomSingleton.getInstance();
+        CustomRandom random = RandomSingleton.getInstance();
         double next = random.nextDouble();
         return -m*Math.log(1.0-next);
     }

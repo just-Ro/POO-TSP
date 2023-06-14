@@ -1,9 +1,10 @@
 package ant_colony_optimization;
 
-import java.util.Random;
+import rand.CustomRandom;
+import rand.RandomSingleton;
 
 public class Names {
-    static String[] names = {
+    private static String[] names = {
         "James", "John", "Robert", "Michael", "William", "David", "Joseph", "Charles", "Thomas",
         "Daniel", "Matthew", "George", "Andrew", "Edward", "Henry", "Patrick", "Richard",
         "Benjamin", "Peter", "Stephen", "Paul", "Frank", "Anthony", "Kenneth", "Steven", "Brian",
@@ -121,7 +122,7 @@ public class Names {
     };
     
     public String setName(){
-        Random random = new Random();
-        return names[(random.nextInt()%names.length)];
+        CustomRandom random = RandomSingleton.getInstance();
+        return names[(random.nextInt(names.length))];
     }
 }

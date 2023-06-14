@@ -3,20 +3,17 @@ package ant_colony_optimization;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
-
-import graph.IGraph;
-import graph.WeightGraph;
+import graph.WeightedGraph;
 
 
 public class Colony {
     public List<Ant> ants;
-    private WeightGraph graph;
+    private WeightedGraph graph;
     private PheroGraph phero;
     private double alpha, beta, gama, eta, rho;
     private int nestNode, nodes, colonySize;
-    private int totalWeight=0;
 
-    public Colony(WeightGraph graph, int colonySize, int nestNode, int nodes, double alpha, double beta, double gama, double eta, double rho){
+    public Colony(WeightedGraph graph, int colonySize, int nestNode, int nodes, double alpha, double beta, double gama, double eta, double rho){
         
         // initialized by reference
         this.graph=graph;
@@ -30,11 +27,6 @@ public class Colony {
         this.nodes = nodes;
         this.alpha = alpha;
         this.beta = beta;
-        for(int source=1; source<nodes; source++){
-            for(int dest=0; dest<=source; dest++){
-                this.totalWeight+=graph.getEdge(source, dest);
-            }
-        }
     }
 
     protected int getColonySize(){
@@ -59,10 +51,6 @@ public class Colony {
 
     protected int getNodes(){
         return this.nodes;
-    }
-
-    protected int getTotalWeight(){
-        return this.totalWeight;
     }
 
     protected double getEta(){

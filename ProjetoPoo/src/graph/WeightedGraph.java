@@ -1,38 +1,53 @@
 package graph;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
-public class WeightGraph extends AGraph<Integer,Integer>{
+public class WeightedGraph extends AGraph<Integer,Integer> {
     private Map<String,IGraphCreationStrategy> graphCreators;
     private IGraphCreationStrategy graphCreatorStrat;
+	private int W;
 
-	public WeightGraph(){
+	public WeightedGraph(){
 		super(true);
+		this.graphCreators = new HashMap<>();
 	}
-
+	
 	// This function initializes the graph with the given strategy
 	public void createGraph(int nodes, int maxWeight, String file){
 		if (graphCreatorStrat == null) {
-            throw new IllegalStateException("Strategy is not set. Please set the strategy before executing.");
+			throw new IllegalStateException("Strategy is not set. Please set the strategy before executing.");
         }
 		graphCreatorStrat.fill(this, nodes, maxWeight, file);
+		calculateTotalWeight();
+	}
+	
+	private void calculateTotalWeight(){
+		this.W=0;
+		int nodes = this.getNodeCount();
+		for(int source=1; source<=nodes; source++){
+			for(int dest=source+1; dest<=nodes; dest++){
+				if(hasEdge(source, dest))
+					this.W+=getEdge(source, dest).intValue();
+			}
+		}
 	}
 
+	public int getW() {
+		return W;
+	}
+	
     // This function prints the adjancency list of each node.
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-
+		
 		Set<Integer> nodes = getNodes();
 		for( Integer source : nodes){
-			builder.append(source.toString()).append(": ");	// Name of the node
-			Set<Integer> neighbours = getNeighbours(source);
-			for(Integer destination : neighbours){
-				builder.append("(");
-				builder.append(destination.toString());
+			for(Integer destination : nodes){
+				builder.append(hasEdge(source, destination) ? getEdge(source, destination).toString() : "0");
 				builder.append(" ");
-				builder.append(getEdge(source, destination).toString());
-				builder.append(") ");
 			}
 			builder.append("\n");
 		}
