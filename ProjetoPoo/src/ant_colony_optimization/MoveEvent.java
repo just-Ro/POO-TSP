@@ -1,6 +1,5 @@
 package ant_colony_optimization;
 
-
 import simulation.AEvent;
 
 
@@ -17,15 +16,16 @@ public class MoveEvent extends AEvent{
         formiga.nextNode();
         this.eventTime += expRandom(delta*formiga.edgeWeight());
     }
-    
-
 
     @Override
     public void handleEvent() {
         System.out.println(formiga);
-        formiga.travel(eventTime);
+        //System.out.println("moveu!" + eventTime);
+        formiga.travel(eventTime, newevents);
+        //Choose next node
         formiga.nextNode();
-        //Programar proximo move Event
+        //Program next Move Event
         this.eventTime += expRandom(delta*formiga.edgeWeight());
     }
+
 }

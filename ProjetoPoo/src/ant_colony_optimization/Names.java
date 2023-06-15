@@ -10,7 +10,7 @@ public class Names {
         "Benjamin", "Peter", "Stephen", "Paul", "Frank", "Anthony", "Kenneth", "Steven", "Brian",
         "Kevin", "Jason", "Timothy", "Joshua", "Eric", "Jeremy", "Adam", "Scott", "Jonathan", "Gregory",
         "Justin", "Terry", "Keith", "Raymond", "Alexander", "Jesse", "Dennis", "Brandon", "Mark",
-        "Aaron", "Travis", "Jeffrey", "Ryan", "Samuel", "Nathan", "Eragon", "Joe",
+        "Aaron", "Travis Scott", "Jeffrey", "Ryan", "Samuel", "Nathan", "Eragon", "Joe",
         "Bryan", "Philip", "Shawn", "Larry", "Dylan", "Roger", "Harry", "Oliver",
         "Jack", "Arthur", "Jacob", "Leo", "Oscar", "Freddie", "Alfie", "Ryan Reynolds",
         "Charlie", "Theodore", "Muhammad", "Archie", "Steve", "Arya", "Eminem",
@@ -32,7 +32,7 @@ public class Names {
         "Amarie", "Amaris", "Annabeth", "Annalynn", "Araminta", "Ardys", "Ashland", "Avery", "Bedegrayne",
         "Bernadette", "Billie", "Birdee", "Bliss", "Brice", "Brittany", "Bryony", "Cameo", "Carol", "Chalee",
         "Christy", "Corky", "Cotovatre", "Courage", "Daelen", "Dana", "Darnell", "Dawn", "Delsie", "Denita",
-        "Devon", "Devona", "Diamond", "Divinity", "Duff", "Dustin", "Dusty", "Ellen", "Eppie",
+        "Devon", "Devona", "Diamond", "Divinity", "Duff", "Dustin", "Dusty", "Eren", "Eppie",
         "Everilda", "Falynn", "Fanny", "Faren", "Freedom", "Shane", "Lady Gaga",
         "Cleavant", "Cleomenes", "Cloten", "Colson", "Colton", "Crandall", "Cupid", "Curio", "Dacian",
         "Dack", "Daelen", "Dagonet", "Dailan", "Dakin", "Dallin", "Dalton", "Dartmouth", "Dathan",
@@ -108,7 +108,7 @@ public class Names {
         "Stafford", "Stamford", "Stanbury", "Stancliff", "Stanwick", "Starr", "Steadman", "Sterling",
         "Stetson", "Stiles", "Sting", "Stoke", "Storm", "Stuart", "Sunny", "Sydney",
         "Sylvester", "Taft", "Talon", "Tem", "Templeton", "Thompson", "Thorley", "Thorndike",
-        "Tolbert", "Tyson", "Uchtred", "Udall", "Udel", "Udolf", "Ulland", "Ulmer",
+        "Tolbert", "Tyson", "Peep", "Udall", "Udel", "Udolf", "Ulland", "Ulmer",
         "Unten", "Unwin", "Upjohn", "Upton", "Upwood", "Usher", "Uther", "Vail",
         "Valen", "Verges", "Versey", "Vine", "Vinson", "Vinton", "Voltimand", "Vortigem",
         "Wadell", "Wadley",  "Wadsworth", "Wain", "Waite", "Walcott", "Wales", "Walford", "Walfred",
@@ -118,7 +118,8 @@ public class Names {
         "Weldon", "Westbrook", "Whistler", "Whitby", "Whitcomb", "Whittaker", "Wid", "Wiley",
         "Wilford", "Willow", "Wilton", "Wingy", "Wirt", "Wisdom", "Wissian", "Witton",
         "Wolcott", "Wolf", "Wolfe", "Woodis", "Woodson", "Wulfsige",
-        "Wyclef", "Wynton", "Wynward", "Wyson", "Wythe", "Yardley", "Yeoman", "Yorath", "Yule", "Zani", "Abacate", "Dave"
+        "Wyclef", "Wynton", "Wynward", "Wyson", "Wythe", "Yardley", "Yeoman", "Yorath", "Yule", "Zani",
+        "Abacate", "Dave", "Jc", "Ro","Miragem","Pal"
     };
     
     public String setName(){

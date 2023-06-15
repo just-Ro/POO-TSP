@@ -35,12 +35,12 @@ public class Ant implements IAnt{
         this.graph=graph;
         this.phero=phero;
         this.col = col;
-        System.out.println(this);
+        //System.out.println(this);
     }
 
     // verify function return to know if the travel went through or if there was no chosen node yet
     @Override
-    public int travel(double eventTime){
+    public int travel(double eventTime, List<IEvent> newevents){
         if(this.currentNode==this.nextNode)
             return -1;
         this.pathSize += 1;
@@ -49,9 +49,10 @@ public class Ant implements IAnt{
         if(this.hamiltonian){
             for(int i=0; i<this.pathSize; i++){
                 phero.updateEdge(path.get(i), path.get(i+1), 0);
+                //If the value of Pheromones was 0, we need to create a new evaporation Event
                 if(phero.getEdge(i,i+1)==0){
                     IEvent ev = new EvaporationEvent(eventTime, col.getEta(), col.getRho(),i,i+1,phero);
-                    //FALTA ADICIONAR A PEC
+                    newevents.add(ev);
                 }
                 
             }
@@ -123,6 +124,9 @@ public class Ant implements IAnt{
                 }
             }
         }
+        next.clear();
+        chance.clear();
+
         return nextNode++;
     }
 

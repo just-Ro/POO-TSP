@@ -9,13 +9,17 @@ import simulation.*;
  * cd src
  * 
  * Compilar tudo:
- * javac main/*.java ant_colony_optimization/*.java simulation/*.java graph/*.java
+ * javac main/*.java ant_colony_optimization/*.java simulation/*.java graph/*.java rand/*.java
  * 
  * Criar o executável:
- * jar cmf manif.txt project.jar main/* ant_colony_optimization/* simulation/* graph/*
+ * jar cmf manif.txt project.jar main/* ant_colony_optimization/* simulation/* graph/* rand/*
  * 
  * Correr o executável:
  * java -jar project.jar
+ * 
+ * Remover todos .class files:
+ * find . -name "*.class" -type f -exec rm -f {} +
+ * (linux)
  */
 
 public class Main{
@@ -25,9 +29,10 @@ public class Main{
         clearScreen();
         
         // debug without command line arguments
-        String[] customArgs = initCustomArgs("generate");
+        //String[] customArgs = initCustomArgs("generate");
+        //Args params = new Args(customArgs);   // Parse command line arguments
 
-        Args params = new Args(customArgs);   // Parse command line arguments
+        Args params = new Args(args);
 
         WeightedGraph graph = new WeightedGraph();
         graph.insertGraphCreationStrat("generate", new GraphGeneratorStrategy());
@@ -128,21 +133,3 @@ public class Main{
     
 }
 
-
-
-
-
-
-
-
-//                                                 _____
-//   											 _/ _ _ \_  
-//   											(o / | \ o)
-//   											 || o|o ||
-//   											 | \_|_/ |
-//   											 |  ___  |
-//   											 | (___) |
-//   											 |\_____/|
-//   											 | \___/ |
-//   											 \       /
-//   											  \__ __/

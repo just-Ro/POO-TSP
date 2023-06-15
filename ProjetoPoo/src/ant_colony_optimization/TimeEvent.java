@@ -15,9 +15,9 @@ public class TimeEvent extends AEvent{
     
     @Override
     public void handleEvent() {
+        System.out.println("oi tempo: " + this.eventTime);
         this.counter++;
-        this.eventTime += (counter*finalInstant)/20;
-        System.out.println("oi, passou 1/20 do time :), eventualmente dar print do mpt ciclo hamilton");
+        this.eventTime = (counter*finalInstant)/20;
     }
     
 }
