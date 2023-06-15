@@ -22,6 +22,7 @@ public class MoveEvent extends AEvent{
 
     @Override
     public void handleEvent() {
+        System.out.println(formiga);
         formiga.travel(eventTime);
         formiga.nextNode();
         //Programar proximo move Event

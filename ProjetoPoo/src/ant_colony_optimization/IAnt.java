@@ -9,8 +9,6 @@ public interface IAnt {
 
     int getCurrentNode();
 
-    void clearPath(int from, int to);
-
     int nextNode();
 
     int pathWeight();

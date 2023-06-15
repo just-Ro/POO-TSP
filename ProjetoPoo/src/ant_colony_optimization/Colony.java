@@ -20,13 +20,18 @@ public class Colony {
         this.phero = new PheroGraph(true);
         
         // Isto
-        this.ants = new ArrayList<Ant>(Collections.nCopies(colonySize, new Ant(nestNode, this.graph, this.phero, this)));
-
+        //this.ants = new ArrayList<Ant>(Collections.nCopies(colonySize, new Ant(nestNode, this.graph, this.phero, this)));
+        
         this.colonySize=colonySize;
         this.nestNode=nestNode;
         this.nodes = nodes;
         this.alpha = alpha;
         this.beta = beta;
+
+        this.ants = new ArrayList<Ant>();
+        for(int i=0; i<colonySize; i++){
+            this.ants.add(i, new Ant(this.nestNode, this.graph, this.phero, this));
+        }
     }
 
     protected int getColonySize(){

@@ -8,11 +8,16 @@ import rand.RandomSingleton;
 import simulation.IEvent;
 
 public class Ant implements IAnt{
+    @Override
+    public String toString() {
+        return "\nAnt [name=" + name + ", " + path + "]" + "\ncurrent node = " + currentNode + "\tnext node = " + nextNode + "\n";
+    }
+
     private int currentNode = -1;
     private int nextNode = -1;
     private String name;
 
-    private List<Integer> path;
+    private Path path;
     private int pathSize=0;
     private boolean hamiltonian=false;
 
@@ -21,15 +26,16 @@ public class Ant implements IAnt{
     private Colony col;
 
     public Ant(int n1, WeightedGraph graph, PheroGraph phero, Colony col){
-        this.path = new ArrayList<Integer>();
-        path.add(n1);
+        this.path = new Path(n1);
         this.currentNode = n1;
+        this.nextNode = n1;
         Names names = new Names();
         this.name = names.setName();
         // initialized by reference
         this.graph=graph;
         this.phero=phero;
         this.col = col;
+        System.out.println(this);
     }
 
     // verify function return to know if the travel went through or if there was no chosen node yet
@@ -50,7 +56,7 @@ public class Ant implements IAnt{
                 
             }
             updatePheroGraph();
-            clearPath(0,this.pathSize);
+            path.clearPath(0,this.pathSize);
         }
         this.hamiltonian=false;
         return 0;
@@ -65,17 +71,10 @@ public class Ant implements IAnt{
     public int getCurrentNode(){
         return this.currentNode;
     }
-    
-    @Override
-    public void clearPath(int from, int to){
-        for(int j=from; j<to; j++){
-            path.remove(from);
-        }
-        this.pathSize = from - 1;
-    }
 
     private double edgeChance(int node){
         double edgeValue = (double) graph.getEdge(currentNode, node);
+        phero.addEdge(currentNode, node, 0.0);
         double pheromoneValue = phero.getEdge(currentNode, node);
         // (alfa+pheromones)/(beta+weight)
         double chance = (col.getAlpha()+pheromoneValue)/(col.getBeta()+edgeValue);
@@ -97,7 +96,7 @@ public class Ant implements IAnt{
         for(int dest : graph.getNeighbours(currentNode)){
             if(!path.contains(dest)){
                 next.add(next.size(), dest);
-                chance.add(next.size(),edgeChance(dest)); 
+                chance.add(chance.size(),edgeChance(dest)); 
             }
         }
 
@@ -117,15 +116,21 @@ public class Ant implements IAnt{
                 hamiltonian = true;
             } else {
                 for(j=0; j<pathSize; j++){
-                    if(path.get(j).equals(i)){
-                        clearPath(j+1,pathSize);
+                    if(path.get(j)==i){
+                        path.clearPath(j+1,pathSize);
                         break;
                     }
                 }
             }
         }
-        return nextNode;
+        return nextNode++;
     }
+
+    /* public void initPheroPath(){
+        for(int i=0; i<pathSize; i++){
+            phero.updateEdge(path.get(i), path.get(i+1), 0);
+        }
+    } */
 
     @Override
     public int pathWeight(){
@@ -151,7 +156,9 @@ public class Ant implements IAnt{
         }
     }
 
-    int edgeWeight(){
-        return graph.getEdge(currentNode,nextNode);
+    public int edgeWeight(){
+        if(graph.hasEdge(currentNode, nextNode))
+            return graph.getEdge(currentNode,nextNode);
+        return -1;
     }
 }
