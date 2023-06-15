@@ -20,11 +20,13 @@ public class Simulator {
             //Simulate current event
             this.currentEvent = pec.nextEventPEC();
             this.currentEvent.handleEvent();
+
             //Add new events to pec
             List<IEvent> newevents = this.currentEvent.getNewEvents();
             for (IEvent event : newevents) {
-                    pec.addEventPEC(event);
+                pec.addEventPEC(event);
             }
+            
             this.currentTime = this.currentEvent.getEventTime();
             if(this.currentEvent.valid() && this.currentEvent.getEventTime() <= this.simulationTime){
                 // Only adds to PEC events within simulationTime, and valid events

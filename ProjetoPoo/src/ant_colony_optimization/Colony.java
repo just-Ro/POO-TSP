@@ -2,7 +2,6 @@ package ant_colony_optimization;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
 import graph.WeightedGraph;
 
 
@@ -15,12 +14,8 @@ public class Colony {
 
     public Colony(WeightedGraph graph, int colonySize, int nestNode, int nodes, double alpha, double beta, double gama, double eta, double rho){
         
-        // initialized by reference
         this.graph=graph;
         this.phero = new PheroGraph(true);
-        
-        // Isto
-        //this.ants = new ArrayList<Ant>(Collections.nCopies(colonySize, new Ant(nestNode, this.graph, this.phero, this)));
         
         this.colonySize=colonySize;
         this.nestNode=nestNode;

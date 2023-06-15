@@ -10,7 +10,7 @@ import simulation.IEvent;
 public class Ant implements IAnt{
     @Override
     public String toString() {
-        return "\nAnt [name=" + name + ", " + path + "]" + "\ncurrent node = " + currentNode + "\tnext node = " + nextNode + "\n";
+        return "Ant [name=" + name + ", " + path + "]" + "\ncurrent node = " + currentNode + "\tnext node = " + nextNode + "\n";
     }
 
     private int currentNode = -1;
@@ -38,7 +38,7 @@ public class Ant implements IAnt{
         //System.out.println(this);
     }
 
-    // verify function return to know if the travel went through or if there was no chosen node yet
+    // verify return value to know if the travel went through or if there was no chosen node yet
     @Override
     public int travel(double eventTime, List<IEvent> newevents){
         if(this.currentNode==this.nextNode)
@@ -57,7 +57,7 @@ public class Ant implements IAnt{
                 
             }
             updatePheroGraph();
-            path.clearPath(0,this.pathSize);
+            path.clear();
         }
         this.hamiltonian=false;
         return 0;
@@ -84,7 +84,7 @@ public class Ant implements IAnt{
 
     @Override
     public int nextNode(){
-        int i=1, j=0;
+
         boolean cicle = false;
         List<Integer> next = new ArrayList<>();
         List<Double> chance = new ArrayList<>();
@@ -93,7 +93,8 @@ public class Ant implements IAnt{
         if(nextNode!=currentNode || hamiltonian){
             return nextNode;
         }
-        // considera todos os vizinhos pelos quais nao tenha passado
+
+        // consider all non-visited neighbours
         for(int dest : graph.getNeighbours(currentNode)){
             if(!path.contains(dest)){
                 next.add(next.size(), dest);
@@ -101,33 +102,33 @@ public class Ant implements IAnt{
             }
         }
 
-        // se nao tiver nenhum no novo escolhe um pelo qual ja tenha passado
+        // if all neighbours were visited, consider all neighbours
         if(next.isEmpty()){
             for(int dest : graph.getNeighbours(currentNode)){
                 next.add(next.size(), dest);
-                chance.add(next.size(),edgeChance(dest)); 
+                chance.add(next.size(),edgeChance(dest));
             }
             cicle=true;
         }
+
+        // get the next node based on the chance array
         CustomRandom random = RandomSingleton.getInstance();
-        nextNode = random.weightedRandom(chance);
+        nextNode = random.weightedRandom(chance) + 1;
+
         if(cicle){
+            System.out.println("oioioi");
             // confirm if it is Hamiltonian
-            if(path.get(pathSize)==path.get(0) && pathSize==col.getNodes()){
+            if(nextNode==path.get(0) && pathSize==col.getNodes()){
                 hamiltonian = true;
             } else {
-                for(j=0; j<pathSize; j++){
-                    if(path.get(j)==i){
-                        path.clearPath(j+1,pathSize);
-                        break;
-                    }
+                for(int i=0; i<path.size();i++){
+                    if(path.get(i)==nextNode)
+                        path.clearUntil(i);
                 }
             }
         }
-        next.clear();
-        chance.clear();
 
-        return nextNode++;
+        return nextNode;
     }
 
     /* public void initPheroPath(){

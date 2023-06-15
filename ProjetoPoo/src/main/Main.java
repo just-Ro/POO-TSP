@@ -29,10 +29,10 @@ public class Main{
         clearScreen();
         
         // debug without command line arguments
-        //String[] customArgs = initCustomArgs("generate");
-        //Args params = new Args(customArgs);   // Parse command line arguments
+        String[] customArgs = initCustomArgs("generate");
+        Args params = new Args(customArgs);   // Parse command line arguments
 
-        Args params = new Args(args);
+        //Args params = new Args(args);
 
         WeightedGraph graph = new WeightedGraph();
         graph.insertGraphCreationStrat("generate", new GraphGeneratorStrategy());

@@ -1,56 +1,49 @@
 package ant_colony_optimization;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Path  {
-    private List<Integer> path;
+public class Path extends ArrayList<Integer>{
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Path: ");
-        for (int i = 0; i < path.size(); i++) {
+        for (int i = 0; i < size(); i++) {
             sb.append(get(i));
-            if (i < path.size() - 1) {
+            if (i < size() - 1) {
                 sb.append(" -> ");
             }
         }
         return sb.toString();
     }
 
-    public Path(int n){
-        this.path = new ArrayList<Integer>();
-        add(0,n);
+    /**Constructs an ArrayList of type Integer initialized with element
+     * @param element element initialized on the path
+     */
+    public Path(int element){
+        super();
+        add(0,element);
     }
 
-    public void add(int index, int value){
-        path.add(index, value);
+    /**Removes all elements starting from the end and stopping at element.
+     * The element is removed.
+     * If the element is not on the path, the entire path is removed.
+     * @param element stopping element
+     */
+    public void clearUntil(int index){
+        super.removeRange(index, size());
     }
 
-    public int get(int n){
-        return path.get(n);
-    }
-
-    public void remove(int n){
-        path.remove(n);
-    }
-
-    public boolean contains(int n){
-        if(path.contains(n))
-            return true;
-        return false;
-    }
-
+    // not in use
     public int clearPath(int from, int to){
         for(int j=from; j<to; j++){
-            path.remove(from);
+            remove(from);
         }
-        return path.size()-1;
+        return size()-1;
     }
 
-    public List<Integer> getPath() {
+    /* public List<Integer> getPath() {
         return path;
-    }
+    } */
 
 }

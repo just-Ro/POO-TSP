@@ -15,7 +15,7 @@ public abstract class AEvent implements IEvent{
         this.eventTime = eventTime;
     }
 
-     @Override
+    @Override
     public double getEventTime(){
         return eventTime;
     }
