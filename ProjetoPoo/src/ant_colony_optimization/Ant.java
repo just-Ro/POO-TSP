@@ -83,8 +83,8 @@ public class Ant implements IAnt {
         this.path = new Path(n1,graph);
         this.currentNode = n1;
         this.nextNode = n1;
-        Names names = new Names();
-        this.name = names.setName();
+        Names names = Names.getInstance();
+        this.name = names.nextName();
         // initialized by reference
         this.graph=graph;
         this.phero=phero;

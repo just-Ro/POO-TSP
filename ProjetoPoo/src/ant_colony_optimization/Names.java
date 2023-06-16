@@ -12,9 +12,13 @@ import rand.RandomSingleton;
  * @author Rodrigo Francisco
  */
 public class Names implements INames{
+
+    private static Names instance;
+    private static boolean defined = false;
+
     private static String[] names = {
         "James", "John", "Robert", "Michael", "William", "David", "Joseph", "Charles", "Thomas",
-        "Daniel", "Matthew", "George", "Andrew", "Edward", "Henry", "Patrick", "Richard",
+        "Daniel", "Matthew", "George", "Andrew Tate", "Edward", "Henry", "Patrick", "Richard",
         "Benjamin", "Peter", "Stephen", "Paul", "Frank", "Anthony", "Kenneth", "Steven", "Brian",
         "Kevin", "Jason", "Timothy", "Joshua", "Eric", "Jeremy", "Adam", "Scott", "Jonathan", "Gregory",
         "Justin", "Terry", "Keith", "Raymond", "Alexander", "Jesse", "Dennis", "Brandon", "Mark",
@@ -129,9 +133,21 @@ public class Names implements INames{
         "Wyclef", "Wynton", "Wynward", "Wyson", "Wythe", "Yardley", "Yeoman", "Yorath", "Yule", "Zani",
         "Abacate", "Dave", "Jc", "Ro","Miragem","Pal", "Chip"
     };
+
+    private Names(){
+
+    }
+
+    public static Names getInstance(){
+        if(!defined){
+            instance = new Names();
+            defined = true;
+        }
+        return instance;
+    }
     
     @Override
-    public String setName(){
+    public String nextName(){
         CustomRandom random = RandomSingleton.getInstance();
         return names[(random.nextInt(names.length))];
     }

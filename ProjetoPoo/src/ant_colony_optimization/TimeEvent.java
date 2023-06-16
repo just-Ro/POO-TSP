@@ -44,17 +44,17 @@ public class TimeEvent extends AEvent implements ITimeEvent{
         String topic1 = sb.toString();
 
         sb = new StringBuilder();
-        sb.append(String.format("Present instant:              %.2f\n", this.eventTime));
-        sb.append(String.format("Number of move events:        %d\n", col.getMevents()));
-        sb.append(String.format("Number of evaporation events: %d\n", col.getEevents()));
+        sb.append(String.format("Present instant:\t\t%.2f\n", this.eventTime));
+        sb.append(String.format("Number of move events:\t%d\n", col.getMevents()));
+        sb.append(String.format("Number of evaporation events:\t%d\n", col.getEevents()));
 
         if(scoreBoard.isEmpty()){
-            sb.append("Top candidate cycles:         \n");
-            sb.append("Best Hamiltonian cycle:       \n");
+            sb.append("Top candidate cycles:\t\t{}\n");
+            sb.append("Best Hamiltonian cycle:\t{}\n");
         }else{
             if(scoreBoard.size()==1){
-                sb.append("Top candidate cycles:         ").append(scoreBoard.first().getSecond().toString()).append("\n");
-                sb.append("Best Hamiltonian cycle:       ").append(scoreBoard.first().getSecond().toString()).append("\n");
+                sb.append("Top candidate cycles:\t\t").append("{}").append("\n");
+                sb.append("Best Hamiltonian cycle:\t").append(scoreBoard.first().getSecond().toString()).append("\n");
             }else{
                 Iterator<Pair> scores = scoreBoard.iterator();
                 String best = new String();
@@ -62,12 +62,12 @@ public class TimeEvent extends AEvent implements ITimeEvent{
                     if(i==0){
                         best = scores.next().getSecond().toString();
                     }else if(i==1){
-                        sb.append("Top candidate cycles:         ").append(scores.next().getSecond().toString()).append("\n");
+                        sb.append("Top candidate cycles:\t\t").append(scores.next().getSecond().toString()).append("\n");
                     }else{
-                        sb.append("                              ").append(scores.next().getSecond().toString()).append("\n");
+                        sb.append("\t\t\t\t").append(scores.next().getSecond().toString()).append("\n");
                     }
                 }
-                sb.append("Best Hamiltonian cycle:       ").append(best).append("\n");
+                sb.append("Best Hamiltonian cycle:\t").append(best).append("\n");
             }
         }
         String topic2 = sb.toString();

@@ -3,6 +3,10 @@ package ant_colony_optimization;
 /**
  * The Path interface represents a path in a weighted graph.
  * It provides methods to manipulate and calculate properties of the path.
+ * 
+ * @author João Mateus
+ * @author Tiago Mira
+ * @author Rodrigo Francisco
  */
 public interface IPath {
     

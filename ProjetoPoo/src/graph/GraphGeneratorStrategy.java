@@ -8,6 +8,10 @@ import rand.RandomSingleton;
 /**
  * The GraphGeneratorStrategy class implements the IGraphCreationStrategy interface
  * and provides a strategy for generating a weighted graph.
+ * 
+ * @author João Mateus
+ * @author Tiago Mira
+ * @author Rodrigo Francisco
  */
 public class GraphGeneratorStrategy implements IGraphCreationStrategy{
 

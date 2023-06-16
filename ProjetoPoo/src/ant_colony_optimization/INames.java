@@ -2,6 +2,10 @@ package ant_colony_optimization;
 
 /**
  * Provides an interface for managing names.
+ * 
+ * @author João Mateus
+ * @author Tiago Mira
+ * @author Rodrigo Francisco
  */
 public interface INames {
     /**
@@ -9,5 +13,5 @@ public interface INames {
      *
      * @return a random name.
      */
-    String setName();
+    String nextName();
 }

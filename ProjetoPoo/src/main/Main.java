@@ -40,7 +40,7 @@ public class Main{
      * @throws Exception if an error occurs during the simulation
      */
     public static void main(String[] args) throws Exception {
-        clearScreen();
+        //clearScreen();
         
         // debug without command line arguments
         //String[] customArgs = initCustomArgs("generate");
@@ -97,7 +97,6 @@ public class Main{
      * @param params the simulation parameters
      */
     public static void printProgramState(WeightedGraph graph, Args params){
-
         String topic1 = new String("Input parameters:");
 
         StringBuilder builder = new StringBuilder();

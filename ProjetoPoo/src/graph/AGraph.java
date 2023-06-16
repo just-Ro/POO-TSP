@@ -8,8 +8,10 @@ import java.util.Set;
  * The AGraph class is an abstract class that represents a graph data structure.
  * It provides a basic implementation of the IGraph interface.
  *
+ * <p>
  * @param <N> the type of the nodes in the graph
  * @param <E> the type of the edges in the graph
+ * </p>
  *
  * @author João Mateus 
  * @author Tiago Mira

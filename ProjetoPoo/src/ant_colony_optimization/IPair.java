@@ -3,6 +3,10 @@ package ant_colony_optimization;
 /**
  * This interface represents a Pair of values.
  * It defines methods to update and retrieve the first and second values of the pair.
+ * 
+ * @author João Mateus
+ * @author Tiago Mira
+ * @author Rodrigo Francisco
  */
 public interface IPair{
     /**
