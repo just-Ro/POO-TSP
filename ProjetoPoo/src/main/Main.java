@@ -40,13 +40,8 @@ public class Main{
      * @throws Exception if an error occurs during the simulation
      */
     public static void main(String[] args) throws Exception {
-        //clearScreen();
-        
-        // debug without command line arguments
-        String[] customArgs = initCustomArgs("file");
-        Args params = new Args(customArgs);   // Parse command line arguments
 
-        //Args params = new Args(args);
+        Args params = new Args(args);
 
         //Generate the Graph
         WeightedGraph graph = new WeightedGraph();
