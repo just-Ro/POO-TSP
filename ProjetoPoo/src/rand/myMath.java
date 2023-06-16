@@ -9,7 +9,13 @@ package rand;
  * @author Rodrigo Francisco
  */
 public class myMath {
-    
+
+    /**
+     * The expRandom method generates a random number following an exponential distribution.
+     *
+     * @param m The parameter of the exponential distribution
+     * @return A random number following the exponential distribution
+     */ 
     public static double expRandom(double m) {
         CustomRandom random = RandomSingleton.getInstance();
         double next = random.nextDouble();

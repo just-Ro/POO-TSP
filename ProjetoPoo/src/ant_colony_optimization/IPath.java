@@ -11,8 +11,6 @@ public interface IPath {
      * @return a copy of the path
      */
     IPath copy();
-    
-    
 
     /**
      * Clears the path by removing all elements starting from the end and stopping at the specified index.

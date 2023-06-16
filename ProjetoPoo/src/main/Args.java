@@ -77,7 +77,6 @@ public class Args implements IArgs{
      */
     private void readFromFile(String[] args){
         try {
-            //File file = new File(args[1]);
             String filePath = args[1];
 
             // Check if the file path is a relative path

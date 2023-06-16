@@ -8,9 +8,49 @@ import rand.RandomSingleton;
 import simulation.IEvent;
 
 /**
- * Represents an Ant object that implements the IAnt interface.
+ * <p>Represents an Ant object that implements the IAnt interface.</p>
  *
- * @author João Mateus 
+ * <p>Example usage:</p>
+ * <pre>
+ * import Ant.java;
+ *public class MyClass {
+ *     public static void main(String[] args) {
+ *         // Create a weighted graph
+ *         WeightedGraph graph = new WeightedGraph();
+ *
+ *         // Create a pheromone graph
+ *         PheroGraph pheroGraph = new PheroGraph();
+ *
+ *         // Create a colony
+ *         Colony colony = new Colony();
+ *
+ *         // Create an ant and provide the necessary parameters
+ *         int initialNode = 0; // Specify the initial node for the ant
+ *         Ant ant = new Ant(initialNode, graph, pheroGraph, colony);
+ *
+ *         // Access and modify ant properties
+ *         System.out.println("Ant name: " + ant.getAntName());
+ *         System.out.println("Current node: " + ant.getCurrentNode());
+ *
+ *         // Travel with the ant
+ *         ant.travel(1.0, null); // Specify the event time and new events list
+ *
+ *         // Access and modify ant properties after travel
+ *         System.out.println("Updated current node: " + ant.getCurrentNode());
+ *         System.out.println("Ant path: " + ant.getPath());
+ *
+ *         // Update the pheromone graph
+ *         ant.updatePheroGraph();
+ *
+ *         // Get the weight of the edge between the current node and the next node
+ *         int edgeWeight = ant.edgeWeight();
+ *         System.out.println("Edge weight: " + edgeWeight);
+ *     }
+ * }
+ * </pre>
+ * 
+ * 
+ * @author João Mateus
  * @author Tiago Mira
  * @author Rodrigo Francisco
  */
@@ -49,7 +89,6 @@ public class Ant implements IAnt {
         this.graph=graph;
         this.phero=phero;
         this.col = col;
-        //System.out.println(this);
     }
 
     // verify return value to know if the travel went through or if there was no chosen node yet
@@ -59,15 +98,11 @@ public class Ant implements IAnt {
         col.incrementMevent();
         path.size();
         path.add(path.size(), this.nextNode);
-        //System.out.println("Caminho " + path);
         this.currentNode = this.nextNode;
         
         if(this.hamiltonian){
             col.updateScoreBoard(new Pair(this.name, this.path.copy()));
-            //System.out.println("ciclo hamiltoniano encontrado!");
             for(int i=0; i<path.size()-1; i++){
-                /* if(!phero.hasEdge(path.get(i), path.get(i+1)))
-                    phero.addEdge(path.get(i), path.get(i+1), 0.0); */
                 //If the value of Pheromones was 0, we need to create a new evaporation Event
                 if(phero.getEdge(path.get(i), path.get(i+1))==0){
                     IEvent ev = new EvaporationEvent(eventTime, col.getEta(), col.getRho(),path.get(i),path.get(i+1),phero, col);
@@ -76,11 +111,9 @@ public class Ant implements IAnt {
                 
             }
             updatePheroGraph();
-            //System.out.println(phero);
             path.clearUntil(1);
         }
         this.hamiltonian=false;
-        //System.out.println(phero);
     }
 
 
@@ -137,17 +170,11 @@ public class Ant implements IAnt {
                 chance.add(chance.size(),edgeChance(dest));
             }
             cicle=true;
-            //System.out.println(cicle);
         }
 
         // get the next node based on the chance array
         ICustomRandom random = RandomSingleton.getInstance();
         nextNode = next.get(random.weightedRandom(chance));
-        
-        //System.out.println("CurrentNode: " + currentNode);
-        //System.out.println("nextNode: " + nextNode);
-        //System.out.println("next: " + next);
-        //System.out.println("path: " + path);
 
         if(cicle){
             // confirm if it is Hamiltonian
@@ -164,13 +191,6 @@ public class Ant implements IAnt {
         }
         return nextNode;
     }
-
-    /* public void initPheroPath(){
-        for(int i=0; i<pathSize; i++){
-            phero.updateEdge(path.get(i), path.get(i+1), 0);
-        }
-    } */
-
 
 
     @Override

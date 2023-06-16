@@ -58,7 +58,7 @@ public class WeightedGraph extends AGraph<Integer,Integer> {
 		Set<Integer> nodes = getNodes();
 		for( Integer source : nodes){
 			for(Integer destination : nodes){
-				builder.append(hasEdge(source, destination) ? getEdge(source, destination).toString() : "\033[31m0\033[m");
+				builder.append(hasEdge(source, destination) ? getEdge(source, destination).toString() : "0");
 				builder.append(" ");
 			}
 			builder.append("\n");

@@ -35,7 +35,6 @@ public class TimeEvent extends AEvent implements ITimeEvent{
         this.finalInstant=finalInstant;
         this.scoreBoard=scoreBoard;
         this.col = col;
-        //handleEvent();
     }
     
     @Override
@@ -70,10 +69,6 @@ public class TimeEvent extends AEvent implements ITimeEvent{
                 }
                 sb.append("Best Hamiltonian cycle:       ").append(best).append("\n");
             }
-            
-            if(this.eventTime==finalInstant){
-                //do final instant stuff
-            }
         }
         String topic2 = sb.toString();
 
@@ -84,7 +79,6 @@ public class TimeEvent extends AEvent implements ITimeEvent{
 
         this.counter++;
         this.eventTime = (counter*finalInstant)/20;
-        //System.out.println("prox tempo: " + this.eventTime);
     }
     
     public String indentString(String string, int spaces){

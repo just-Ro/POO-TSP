@@ -25,7 +25,7 @@ public class Path extends ArrayList<Integer> implements IPath{
         for (int i = 0; i < size(); i++) {
             sb.append(get(i));
             if (i < size() - 1) {
-                sb.append(","); //{1,5,4,2,3}:14
+                sb.append(",");
             }
         }
         sb.append("}:");
@@ -59,12 +59,8 @@ public class Path extends ArrayList<Integer> implements IPath{
 
     @Override
     public void clearUntil(int index){
-        //System.out.print("before: ");
-        //System.out.println(this);
         super.removeRange(index, size()-1);
         remove(size()-1);
-        //System.out.print("after: ");
-        //System.out.println(this);
     }
 
     @Override

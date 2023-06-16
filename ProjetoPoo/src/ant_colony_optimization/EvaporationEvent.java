@@ -5,7 +5,7 @@ import static rand.myMath.expRandom;
 
 /**
  * The EvaporationEvent class represents an event in which pheromone evaporation occurs in an ant colony optimization algorithm.
- * It is responsible for updating the pheromone levels on a specific edge in the pheromone graph.
+ * It is responsible for updating the pheromone levels on a specific edge in the pheromone graph, reducing the value of pheromones by rho.
  * 
  * @author João Mateus 
  * @author Tiago Mira
@@ -37,25 +37,17 @@ public class EvaporationEvent extends AEvent implements IEvaporationEvent{
         this.source = source;
         this.pGraph = pGraph;
         this.col = col;
-        //System.out.printf("\nEvento de evaporacao criado! %.4f\n", eventTime);
-        //System.out.println("s e d: " + source + " " + dest);
         this.eventTime += expRandom(eta);
     }
 
     @Override
     public void handleEvent() {
         col.incrementEevent();
-        //System.out.println("oi evap: " + this.eventTime);
-        //System.out.printf("Evaporou! %.2f\n", eventTime);
-        //System.out.println("Quantas pheros antes: " + this.pGraph.getEdge(source, dest));
-        //System.out.println("s e d: " + source + " " + dest);
-
+        //Updates edge value, decrementing rho
         this.pGraph.updateEdge(source, dest, (-this.rho));
+        //Sets up the eventTime for the next Evaporation Event
         this.eventTime += expRandom(eta);
-        //System.out.println("prox evap: " + this.eventTime);
-        //System.out.println("Quantas pheros depois: " + this.pGraph.getEdge(source, dest) + "\n");
-        //System.out.println(pGraph);
-
+        //If edge value is 0, make the Event invalid
         if(this.pGraph.getEdge(source, dest) == 0.0){
             this.isvalid = false;
         }

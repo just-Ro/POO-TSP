@@ -8,7 +8,6 @@ import graph.WeightedGraph;
 
 /**
  * The Colony class represents a colony of ants in an ant colony optimization algorithm.
- * It manages the ants, graph, pheromone levels, and other parameters required for the algorithm.
  * 
  * @author João Mateus 
  * @author Tiago Mira
@@ -16,8 +15,6 @@ import graph.WeightedGraph;
  */
 public class Colony implements IColony{
     public List<Ant> ants;
-    //public ArrayList<Pair> scoreBoard;
-    //public SortedSet<Pair> scoreBoard;
     private TreeSet<Pair> scoreBoard;
 	private WeightedGraph graph;
     private PheroGraph phero;
@@ -59,7 +56,6 @@ public class Colony implements IColony{
             this.ants.add(i, new Ant(this.nestNode, this.graph, this.phero, this));
         }
 
-        //this.scoreBoard = new TreeSet<>(Comparator.comparingInt(Pair::getWeight));
         this.scoreBoard = new TreeSet<>(new PairComparator());
     }
 
@@ -67,27 +63,6 @@ public class Colony implements IColony{
     public void updateScoreBoard(Pair pair){
         scoreBoard.add(pair);
         if(scoreBoard.size() > 6) scoreBoard.pollLast();
-
-
-        /* for(int i=0; i<5; i++){
-            // checks for unused slots in the score board
-            if(scoreBoard.get(i).getFirst()==null){
-                scoreBoard.get(i).update(ant.getAntName(),ant.getPath());
-            }
-            // checks for equal paths
-            if(scoreBoard.get(i).getSecond().equals(ant.getPath())){
-                return 0; // º.º
-            }
-        }
-        for(int i=0; i<5; i++){
-            // compares path weights
-            if(ant.pathWeight() < scoreBoard.get(i).getSecond().pathWeight()){
-                for(int j=5; j>i; j--){
-                    scoreBoard.get(j).updateSecond(scoreBoard.get(j-1).getSecond());
-                }
-                break;
-            }
-        } */
     }
 
     @Override
@@ -162,7 +137,9 @@ class PairComparator implements Comparator<Pair>{
     @Override
     public int compare(Pair p1, Pair p2) {
         int i = Integer.compare(p1.getSecond().pathWeight(), p2.getSecond().pathWeight());
+        //Dont return 0, so that TreeSet can have more than 1 Pair with the same path Weight
         if (i == 0) i = -1;
+        //Return 0 if they are the same path (dont add to the treeSet)
         boolean equal = (p1.getSecond()).equals(p2.getSecond());
         if (equal) return 0;
         return i; 

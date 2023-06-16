@@ -30,7 +30,6 @@ public class PEC implements IPEC {
      * Initializes the TreeSet to store events in a sorted order based on their event time.
      */
     public PEC(){
-        //this.eventSet = new TreeSet<>(Comparator.comparingDouble(IEvent::getEventTime));
         this.eventSet = new TreeSet<>(new PECComparator());
     }
 

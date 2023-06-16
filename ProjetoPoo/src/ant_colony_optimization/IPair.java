@@ -4,7 +4,7 @@ package ant_colony_optimization;
  * This interface represents a Pair of values.
  * It defines methods to update and retrieve the first and second values of the pair.
  */
-public interface IPair {
+public interface IPair{
     /**
      * Updates the values of the Pair.
      * @param fnew the new value for the first element of the Pair

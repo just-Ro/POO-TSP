@@ -3,19 +3,12 @@ package simulation;
 import java.util.List;
 
 /**
- * The Simulator class implements the ISimulator interface and represents a simulation engine.
- * It manages the simulation time, current event, and the Priority Event Container (PEC) where events are stored.
- * The Simulator runs the simulation by continuously processing events until the PEC is empty or the simulation time limit is reached.
+ * <p>The Simulator class implements the ISimulator interface and represents a simulation engine. </p>
+ * <p>It manages the simulation time, current event, and the Priority Event Container (PEC) where events are stored.
+ * The Simulator runs the simulation by continuously processing events until the PEC is empty or the simulation time limit is reached.</p>
  * 
- * Example usage:
- * double finalInstant = 100.0;
- * Simulator simulator = new Simulator(finalInstant);
- * IEvent event = new Event(...);
- * simulator.addToPEC(event);
- * simulator.run();
- * 
- * Note: The actual implementation of the IEvent and IPEC interfaces are not shown here.
- * The Simulator class assumes that the IEvent and IPEC interfaces and their implementing classes exist and have appropriate functionality.
+ * <p>Note: The actual implementation of the IEvent and IPEC interfaces are not shown here.
+ * The Simulator class assumes that the IEvent and IPEC interfaces and their implementing classes exist and have appropriate functionality.</p>
  * 
  * @author João Mateus 
  * @author Tiago Mira
