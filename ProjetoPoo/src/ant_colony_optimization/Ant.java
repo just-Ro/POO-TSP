@@ -9,46 +9,6 @@ import simulation.IEvent;
 
 /**
  * <p>Represents an Ant object that implements the IAnt interface.</p>
- *
- * <p>Example usage:</p>
- * <pre>
- * import Ant.java;
- *public class MyClass {
- *     public static void main(String[] args) {
- *         // Create a weighted graph
- *         WeightedGraph graph = new WeightedGraph();
- *
- *         // Create a pheromone graph
- *         PheroGraph pheroGraph = new PheroGraph();
- *
- *         // Create a colony
- *         Colony colony = new Colony();
- *
- *         // Create an ant and provide the necessary parameters
- *         int initialNode = 0; // Specify the initial node for the ant
- *         Ant ant = new Ant(initialNode, graph, pheroGraph, colony);
- *
- *         // Access and modify ant properties
- *         System.out.println("Ant name: " + ant.getAntName());
- *         System.out.println("Current node: " + ant.getCurrentNode());
- *
- *         // Travel with the ant
- *         ant.travel(1.0, null); // Specify the event time and new events list
- *
- *         // Access and modify ant properties after travel
- *         System.out.println("Updated current node: " + ant.getCurrentNode());
- *         System.out.println("Ant path: " + ant.getPath());
- *
- *         // Update the pheromone graph
- *         ant.updatePheroGraph();
- *
- *         // Get the weight of the edge between the current node and the next node
- *         int edgeWeight = ant.edgeWeight();
- *         System.out.println("Edge weight: " + edgeWeight);
- *     }
- * }
- * </pre>
- * 
  * 
  * @author João Mateus
  * @author Tiago Mira
