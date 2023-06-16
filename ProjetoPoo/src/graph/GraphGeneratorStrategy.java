@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import rand.CustomRandom;
 import rand.RandomSingleton;
 
-
+/**
+ * The GraphGeneratorStrategy class implements the IGraphCreationStrategy interface
+ * and provides a strategy for generating a weighted graph.
+ */
 public class GraphGeneratorStrategy implements IGraphCreationStrategy{
 
     @Override

@@ -4,11 +4,14 @@ import rand.CustomRandom;
 import rand.RandomSingleton;
 
 /**
+ * This class represents a collection of names.
+ * It provides functionality to access a random name from the collection.
+ *
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco
  */
-public class Names {
+public class Names implements INames{
     private static String[] names = {
         "James", "John", "Robert", "Michael", "William", "David", "Joseph", "Charles", "Thomas",
         "Daniel", "Matthew", "George", "Andrew", "Edward", "Henry", "Patrick", "Richard",
@@ -124,9 +127,10 @@ public class Names {
         "Wilford", "Willow", "Wilton", "Wingy", "Wirt", "Wisdom", "Wissian", "Witton",
         "Wolcott", "Wolf", "Wolfe", "Woodis", "Woodson", "Wulfsige",
         "Wyclef", "Wynton", "Wynward", "Wyson", "Wythe", "Yardley", "Yeoman", "Yorath", "Yule", "Zani",
-        "Abacate", "Dave", "Jc", "Ro","Miragem","Pal"
+        "Abacate", "Dave", "Jc", "Ro","Miragem","Pal", "Chip"
     };
     
+    @Override
     public String setName(){
         CustomRandom random = RandomSingleton.getInstance();
         return names[(random.nextInt(names.length))];

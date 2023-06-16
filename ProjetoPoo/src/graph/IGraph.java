@@ -3,6 +3,13 @@ package graph;
 import java.util.Set;
 
 /**
+ * The IGraph interface represents a generic graph.
+ * It defines operations to add nodes and edges, retrieve information about the graph,
+ * and perform various graph-related operations.
+ *
+ * @param <N> the type of nodes in the graph
+ * @param <E> the type of edges in the graph
+ *
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco

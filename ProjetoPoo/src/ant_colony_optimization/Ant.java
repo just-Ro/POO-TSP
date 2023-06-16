@@ -3,16 +3,18 @@ package ant_colony_optimization;
 import java.util.List;
 import java.util.ArrayList;
 import graph.WeightedGraph;
-import rand.CustomRandom;
+import rand.ICustomRandom;
 import rand.RandomSingleton;
 import simulation.IEvent;
 
 /**
+ * Represents an Ant object that implements the IAnt interface.
+ *
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco
  */
-public class Ant implements IAnt{
+public class Ant implements IAnt {
     @Override
     public String toString() {
         return "Ant [name=" + name + ", " + path + "]" + "\ncurrent node = " + currentNode + "\tnext node = " + nextNode + "\n";
@@ -29,6 +31,14 @@ public class Ant implements IAnt{
     private PheroGraph phero;
     private Colony col;
 
+    /**
+     * Constructs an Ant object with the specified parameters.
+     *
+     * @param n1    The initial node for the Ant.
+     * @param graph The WeightedGraph object for the Ant to navigate.
+     * @param phero The PheroGraph object for the Ant to update pheromones.
+     * @param col   The Colony object to which the Ant belongs.
+     */
     public Ant(int n1, WeightedGraph graph, PheroGraph phero, Colony col){
         this.path = new Path(n1,graph);
         this.currentNode = n1;
@@ -43,8 +53,10 @@ public class Ant implements IAnt{
     }
 
     // verify return value to know if the travel went through or if there was no chosen node yet
+
     @Override
-    public int travel(double eventTime, List<IEvent> newevents){
+    public void travel(double eventTime, List<IEvent> newEvents){
+        col.incrementMevent();
         path.size();
         path.add(path.size(), this.nextNode);
         //System.out.println("Caminho " + path);
@@ -58,8 +70,8 @@ public class Ant implements IAnt{
                     phero.addEdge(path.get(i), path.get(i+1), 0.0); */
                 //If the value of Pheromones was 0, we need to create a new evaporation Event
                 if(phero.getEdge(path.get(i), path.get(i+1))==0){
-                    IEvent ev = new EvaporationEvent(eventTime, col.getEta(), col.getRho(),path.get(i),path.get(i+1),phero);
-                    newevents.add(ev);
+                    IEvent ev = new EvaporationEvent(eventTime, col.getEta(), col.getRho(),path.get(i),path.get(i+1),phero, col);
+                    newEvents.add(ev);
                 }
                 
             }
@@ -69,19 +81,21 @@ public class Ant implements IAnt{
         }
         this.hamiltonian=false;
         //System.out.println(phero);
-        return 0;
     }
+
 
     @Override
     public String getAntName(){
         return this.name;
     }
 
+
     @Override
     public int getCurrentNode(){
         return this.currentNode;
     }
 
+    @Override
     public Path getPath(){
         return path;
     }
@@ -94,6 +108,7 @@ public class Ant implements IAnt{
         double chance = (col.getAlpha()+pheromoneValue)/(col.getBeta()+edgeValue);
         return chance;
     }
+
 
     @Override
     public int nextNode(){
@@ -126,7 +141,7 @@ public class Ant implements IAnt{
         }
 
         // get the next node based on the chance array
-        CustomRandom random = RandomSingleton.getInstance();
+        ICustomRandom random = RandomSingleton.getInstance();
         nextNode = next.get(random.weightedRandom(chance));
         
         //System.out.println("CurrentNode: " + currentNode);
@@ -157,10 +172,12 @@ public class Ant implements IAnt{
     } */
 
 
+
     @Override
     public double pheroUpdateValue(){
         return col.getGama()*graph.getW()/path.pathWeight();
     }
+
 
     @Override
     public void updatePheroGraph(){
@@ -170,6 +187,7 @@ public class Ant implements IAnt{
         }
     }
 
+    @Override
     public int edgeWeight(){
         if(graph.hasEdge(currentNode, nextNode))
             return graph.getEdge(currentNode,nextNode);

@@ -5,6 +5,12 @@ import java.util.HashMap;
 import java.util.Set;
 
 /**
+ * The AGraph class is an abstract class that represents a graph data structure.
+ * It provides a basic implementation of the IGraph interface.
+ *
+ * @param <N> the type of the nodes in the graph
+ * @param <E> the type of the edges in the graph
+ *
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco
@@ -15,6 +21,11 @@ public abstract class AGraph<N,E> implements IGraph<N, E> {
 	protected Map<N, Map<N, E> > map;
 	private boolean bidirectional = false;
 
+	/**
+	 * Constructs an AGraph object with the specified bidirectional property.
+	 *
+	 * @param bidirectional true if the graph is bidirectional, false otherwise
+	 */
 	public AGraph(boolean bidirectional){
 		this.bidirectional = bidirectional;
 		this.map = new HashMap<>();

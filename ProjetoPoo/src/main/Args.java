@@ -5,17 +5,24 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
+ * The Args class parses and stores the command line arguments passed to the program.
+ *
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco
  */
-public class Args{
+public class Args implements IArgs{
 
     public int nodes, maxEdgeWeight, nestNode, colonySize;
     public double alfa, beta, delta, eta, rho, pheromoneLevel, finalInstant;
     public String file;
     public String mode;
 
+    /**
+     * Constructs an Args object and processes the command line arguments.
+     *
+     * @param args the command line arguments
+     */
     public Args(String[] args){
         if(args.length < 2){
             System.out.println("Not enough command line arguments.");
@@ -42,6 +49,11 @@ public class Args{
         }
     }
 
+    /**
+     * Reads the command line arguments and initializes the values accordingly.
+     *
+     * @param args the command line arguments
+     */
     private void readFromArgs(String[] args){
         this.file = "";
         this.mode = new String("generate");
@@ -58,9 +70,26 @@ public class Args{
         this.finalInstant = Double.parseDouble(args[11]);
     }
 
+     /**
+     * Reads the command line arguments and initializes the values accordingly.
+     *
+     * @param args the command line arguments
+     */
     private void readFromFile(String[] args){
         try {
-            File file = new File(args[1]);
+            //File file = new File(args[1]);
+            String filePath = args[1];
+
+            // Check if the file path is a relative path
+            if (filePath.startsWith("./") || filePath.startsWith(".\\")) {
+                // Prepend it with the current directory path
+                String currentDir = System.getProperty("user.dir");
+                filePath = currentDir + File.separator + filePath.substring(2);
+            }
+
+            File file = new File(filePath);
+
+
             Scanner scanner = new Scanner(file);
 
             // Read the variables
@@ -83,10 +112,12 @@ public class Args{
         }
     }
 
+    @Override
     public boolean fileMode(){
         return this.mode.equals("file");
     }
 
+    @Override
     public boolean readMode(){
         return this.mode.equals("read");
     }

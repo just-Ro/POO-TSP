@@ -4,15 +4,26 @@ import java.util.Random;
 import java.util.List;
 
 /**
+ * The CustomRandom class extends the Random class and provides additional methods for generating weighted random values.
+ * It allows generating random values based on a list of probabilities.
+ * 
+ * The class provides methods for generating random integers and computing cumulative probabilities.
+ *
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco
  */
-public class CustomRandom extends Random{
+public class CustomRandom extends Random implements ICustomRandom{
+
+    /**
+     * Constructs a new CustomRandom object.
+     * It initializes the random number generator.
+     */
     public CustomRandom(){
         super();
     }
 
+    @Override
     public int weightedRandom(List<Double> chances) {
         double[] cProbs = computeCumulativeProbabilities(chances);
 
@@ -28,6 +39,7 @@ public class CustomRandom extends Random{
         return selectedIndex;
     }
 
+    @Override
     public double[] computeCumulativeProbabilities(List<Double> chances) {
         double[] cProbs = new double[chances.size()];
         cProbs[0] = chances.get(0);

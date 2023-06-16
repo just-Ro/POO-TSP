@@ -5,40 +5,33 @@ import java.util.Set;
 import graph.AGraph;
 
 /**
+ * The PheroGraph class represents a graph used for pheromone levels in ant colony optimization.
+ * It extends the AGraph<Integer, Double> class, which provides the basic graph structure and operations.
+ * Pheromone levels are stored as edge weights in the graph.
+ * The class allows for updating the pheromone levels of edges and retrieving information about the graph.
+ * 
+ * Pheromone levels are updated using the {@link #updateEdge(int, int, double)} method, which adds a value to an edge.
+ * The class also overrides the {@link #toString()} method to provide a string representation of the adjacency matrix
+ * of the graph, displaying the pheromone levels of each edge.
+ * 
+ * This class assumes that the pheromone levels are represented as {@code double} values.
+ * Negative pheromone levels are not allowed, and any resulting negative value is set to zero.
+ * 
+ * @see AGraph
+ *
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco
  */
 public class PheroGraph extends AGraph<Integer, Double> {
-/*
-# Comentários do feijão
-		
-	 I
-	 A
-Iw W   P Ip
 
-I 
-A implements I 
-
-Iw extends I 
-w extends A implements Iw
-
-api
-	graph
-		I
-		Iw
-		Ip
-	simulation
-		....
-
-impl
-	graph
-		...
-	simulation
-		...
-	aco
-
-*/
+	/**
+     * Constructs a PheroGraph with the specified bidirectional flag.
+     * If the bidirectional flag is set to {@code true}, the graph will allow bidirectional edges.
+     * If the bidirectional flag is set to {@code false}, the graph will only allow unidirectional edges.
+     * 
+     * @param bidirectional the flag indicating whether the graph allows bidirectional edges
+     */
     public PheroGraph(boolean bidirectional) {
         super(bidirectional);
     }

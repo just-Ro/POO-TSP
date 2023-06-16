@@ -1,16 +1,21 @@
 package ant_colony_optimization;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import graph.WeightedGraph;
 
 /**
+ * The Path class represents a path in a weighted graph.
+ * It extends ArrayList<Integer> and provides additional methods
+ * to manipulate and calculate properties of the path.
+ * 
+ * It also overrides the toString() method to provide a custom string representation of the path.
+ *
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco
  */
-public class Path extends ArrayList<Integer>{
+public class Path extends ArrayList<Integer> implements IPath{
     WeightedGraph graph;
 
     @Override
@@ -28,8 +33,11 @@ public class Path extends ArrayList<Integer>{
         return sb.toString();
     }
 
-    /**Constructs an ArrayList of type Integer initialized with element
-     * @param element element initialized on the path
+    /**
+     * Constructs a Path object with the specified initial element and associated weighted graph.
+     * 
+     * @param element the initial element of the path
+     * @param graph the associated weighted graph
      */
     public Path(int element, WeightedGraph graph){
         super();
@@ -42,17 +50,14 @@ public class Path extends ArrayList<Integer>{
         this.graph = graph;
     }
     
+    @Override
     public Path copy() {
         Path copy = new Path(this.graph);
         copy.addAll(this);
         return copy;
     }
 
-    /**Removes all elements starting from the end and stopping at element.
-     * The element is removed.
-     * If the element is not on the path, the entire path is removed.
-     * @param element stopping element
-     */
+    @Override
     public void clearUntil(int index){
         //System.out.print("before: ");
         //System.out.println(this);
@@ -62,6 +67,7 @@ public class Path extends ArrayList<Integer>{
         //System.out.println(this);
     }
 
+    @Override
     public int pathWeight(){
         int w=0;
 
@@ -72,7 +78,7 @@ public class Path extends ArrayList<Integer>{
         return w;
     }
 
-    // not in use
+    @Override
     public int clearPath(int from, int to){
         for(int j=from; j<to; j++){
             remove(from);
@@ -80,6 +86,7 @@ public class Path extends ArrayList<Integer>{
         return size()-1;
     }
 
+    @Override
     public Path invertPath(Path path){
         int aux;
         for(int i=0; i<(path.size()-path.size()%2)/2; i++){
@@ -92,7 +99,7 @@ public class Path extends ArrayList<Integer>{
         return path;
     }
 
-
+    @Override
     public boolean equals(Path path){
         if(size()!=path.size())
             return false;
@@ -108,6 +115,16 @@ public class Path extends ArrayList<Integer>{
             return false;
         
         return true;
+    }
+
+    @Override
+    public void addElement(int element) {
+        add(element);
+    }
+
+    @Override
+    public int getElement(int index){
+        return get(index);
     }
 
 }

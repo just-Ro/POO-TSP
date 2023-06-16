@@ -1,0 +1,29 @@
+/*
+# Comentários do feijão
+		
+	 I
+	 A
+Iw W   P Ip
+
+I 
+A implements I 
+
+Iw extends I 
+w extends A implements Iw
+
+api
+	graph
+		I
+		Iw
+		Ip
+	simulation
+		....
+
+impl
+	graph
+		...
+	simulation
+		...
+	aco
+
+*/

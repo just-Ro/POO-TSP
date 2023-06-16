@@ -3,6 +3,20 @@ package simulation;
 import java.util.List;
 
 /**
+ * The Simulator class implements the ISimulator interface and represents a simulation engine.
+ * It manages the simulation time, current event, and the Priority Event Container (PEC) where events are stored.
+ * The Simulator runs the simulation by continuously processing events until the PEC is empty or the simulation time limit is reached.
+ * 
+ * Example usage:
+ * double finalInstant = 100.0;
+ * Simulator simulator = new Simulator(finalInstant);
+ * IEvent event = new Event(...);
+ * simulator.addToPEC(event);
+ * simulator.run();
+ * 
+ * Note: The actual implementation of the IEvent and IPEC interfaces are not shown here.
+ * The Simulator class assumes that the IEvent and IPEC interfaces and their implementing classes exist and have appropriate functionality.
+ * 
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco
@@ -14,6 +28,11 @@ public class Simulator implements ISimulator{
     private IEvent currentEvent;
     private double currentTime;
     
+    /**
+     * Constructs a new Simulator object with the specified final instant of the simulation.
+     *
+     * @param finalInstant the final instant of the simulation
+     */
     public Simulator(double finalInstant){
         this.simulationTime = finalInstant;
         this.currentTime = 0;
@@ -29,16 +48,14 @@ public class Simulator implements ISimulator{
             this.currentTime = this.currentEvent.getEventTime();
             this.currentEvent.handleEvent();
             //Add new events to pec
-            List<IEvent> newevents = this.currentEvent.getNewEvents();
-            for (IEvent event : newevents) {
+            List<IEvent> newEvents = this.currentEvent.getNewEvents();
+            for (IEvent event : newEvents) {
                 pec.addEventPEC(event);
             }
             //Checks if the Events are valid. If they arent, dont add them to the PEC
             if(this.currentEvent.valid() && this.currentEvent.getEventTime() <= this.simulationTime){
                 // Only adds to PEC events within simulationTime, and valid events
                 pec.addEventPEC(this.currentEvent);
-            }else if (!this.currentEvent.valid()){
-                //System.out.println("EVENTO ELIMINADO");
             }
         }
     }

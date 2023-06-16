@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * The WeightedGraph class represents a weighted graph.
+ * It extends the AGraph class and provides additional functionality for managing weighted edges.
+ *
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco
@@ -14,6 +17,10 @@ public class WeightedGraph extends AGraph<Integer,Integer> {
     private IGraphCreationStrategy graphCreatorStrat;
 	private int W;
 
+	/**
+     * Constructs a WeightedGraph object.
+     * Initializes the graph with bidirectional edges.
+     */
 	public WeightedGraph(){
 		super(true);
 		this.graphCreators = new HashMap<>();

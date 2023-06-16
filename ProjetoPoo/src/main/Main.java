@@ -34,11 +34,12 @@ public class Main{
         clearScreen();
         
         // debug without command line arguments
-        String[] customArgs = initCustomArgs("generate");
-        Args params = new Args(customArgs);   // Parse command line arguments
+        //String[] customArgs = initCustomArgs("generate");
+        //Args params = new Args(customArgs);   // Parse command line arguments
 
-        //Args params = new Args(args);
+        Args params = new Args(args);
 
+        //Generate the Graph
         WeightedGraph graph = new WeightedGraph();
         graph.insertGraphCreationStrat("generate", new GraphGeneratorStrategy());
         graph.insertGraphCreationStrat("read file", new GraphReaderStrategy());
@@ -46,21 +47,27 @@ public class Main{
         graph.createGraph(params.nodes, params.maxEdgeWeight, params.file);
     
         printProgramState(graph, params);
+        //Create a colony of Ants
         Colony col = new Colony(graph, params.colonySize,params.nestNode, params.nodes, params.alfa,params.beta, params.pheromoneLevel, params.eta,params.rho);
 
         Simulator sim = new Simulator(params.finalInstant);
+
+        //Initialize the first events
         init(params, col, sim);
 
+        //Run the Simulator
         sim.run();
         // Above is main's last command
     }
     
     public static void init(Args params, Colony col, Simulator sim){
-        for (Ant formiga : col.ants){
+        //For every Ant, one Move Event will be Created in time 0
+        for (IAnt formiga : col.ants){
             IEvent ev = new MoveEvent(0, formiga, params.delta);
             sim.addToPEC(ev);
         }
-        IEvent ev = new TimeEvent(params.finalInstant/20, params.finalInstant, col.getScoreBoard());
+        //A Time Event will also be created
+        IEvent ev = new TimeEvent(params.finalInstant/20, params.finalInstant, col.getScoreBoard(),col);
         sim.addToPEC(ev);
     }
 
