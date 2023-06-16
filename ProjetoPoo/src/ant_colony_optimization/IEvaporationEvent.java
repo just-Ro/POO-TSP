@@ -8,6 +8,7 @@ import simulation.IEvent;
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco
+ * @see EvaporationEvent
  */
 public interface IEvaporationEvent extends IEvent{
 

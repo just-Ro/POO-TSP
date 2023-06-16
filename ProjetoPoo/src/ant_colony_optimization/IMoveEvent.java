@@ -11,6 +11,7 @@ import simulation.IEvent;
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco
+ * @see MoveEvent
  */
 public interface IMoveEvent extends IEvent{
 

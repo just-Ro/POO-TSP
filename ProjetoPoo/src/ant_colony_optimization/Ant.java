@@ -55,12 +55,15 @@ public class Ant implements IAnt {
 
     @Override
     public void travel(double eventTime, List<IEvent> newEvents){
+        //Increment number of Move Events
         col.incrementMevent();
         path.size();
+        //Travel
         path.add(path.size(), this.nextNode);
         this.currentNode = this.nextNode;
-        
+        //If we found an Hamiltonian Cycle
         if(this.hamiltonian){
+            //Update ScoreBoard with the best hamiltonians
             col.updateScoreBoard(new Pair(this.name, this.path.copy()));
             for(int i=0; i<path.size()-1; i++){
                 //If the value of Pheromones was 0, we need to create a new evaporation Event
@@ -70,7 +73,9 @@ public class Ant implements IAnt {
                 }
                 
             }
+            //Update the Pheromone Levels
             updatePheroGraph();
+            //Clear Path and leave only the nest node
             path.clearUntil(1);
         }
         this.hamiltonian=false;
@@ -141,7 +146,9 @@ public class Ant implements IAnt {
             if(nextNode==path.get(0) && path.size()==col.getNodes()){
                 hamiltonian = true;
             } else {
+                //A cicle that is not hamiltonian was found
                 for(int i=0; i<path.size();i++){
+                    //Remove that cicle
                     if(path.get(i)==nextNode){
                         path.clearUntil(i);
                         break;

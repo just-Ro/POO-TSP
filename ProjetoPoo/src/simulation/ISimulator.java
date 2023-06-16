@@ -6,6 +6,7 @@ package simulation;
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco
+ * @see Simulator
  */
 public interface ISimulator {
     /**

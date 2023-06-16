@@ -7,6 +7,7 @@ package ant_colony_optimization;
  * @author João Mateus
  * @author Tiago Mira
  * @author Rodrigo Francisco
+ * @see Path
  */
 public interface IPath {
     

@@ -6,6 +6,7 @@ import java.util.List;
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco
+ * @see AEvent
  */
 public interface IEvent {
 

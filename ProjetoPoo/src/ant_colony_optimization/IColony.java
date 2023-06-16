@@ -9,6 +9,7 @@ import java.util.TreeSet;
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco
+ * @see Colony
  */
 public interface IColony {
 

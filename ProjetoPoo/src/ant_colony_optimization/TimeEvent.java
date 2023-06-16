@@ -78,6 +78,7 @@ public class TimeEvent extends AEvent implements ITimeEvent{
         System.out.println(sb.toString());
 
         this.counter++;
+        //Program the event time for the next TimeEvent
         this.eventTime = (counter*finalInstant)/20;
     }
     

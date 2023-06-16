@@ -2,6 +2,11 @@ package main;
 
 /**
  * The Args interface represents the command line arguments passed to the program.
+ * 
+ * @author João Mateus 
+ * @author Tiago Mira
+ * @author Rodrigo Francisco
+ * @see Args
  */
 public interface IArgs {
     /**

@@ -20,7 +20,9 @@ public class Colony implements IColony{
     private PheroGraph phero;
     private double alpha, beta, gama, eta, rho;
     private int nestNode, nodes, colonySize;
+    //Number of Move Events
     public int mevents = 0;
+    //Number of Evaporation Events
     public int eevents = 0;
 
 

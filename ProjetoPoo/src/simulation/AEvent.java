@@ -7,20 +7,6 @@ import java.util.List;
  * The AEvent class is an abstract class that implements the IEvent interface.
  * It provides common functionality for event objects in a simulation.
  * 
- * <p>Example usage:</p>
- * <pre>{@code
- * class MyEvent extends AEvent {
- *     public MyEvent(double eventTime) {
- *         super(eventTime);
- *     }
- * 
- *     @Override
- *     public void handleEvent() {
- *         // Handle the event logic
- *     }
- * }
- * </pre>
- * 
  * Note: The actual implementation of the IEvent interface is not shown here.
  * The AEvent class assumes that the IEvent interface exists and has appropriate functionality.
  * 

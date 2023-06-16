@@ -9,15 +9,17 @@ import java.util.Comparator;
  * It uses a TreeSet to store events in a sorted order based on their event time.
  * This class is responsible for adding events to the container, retrieving the next event, and checking if the container is empty.
  * 
- * Example usage:
+ * <p>Example usage:</p>
+ * <pre>{@code
  * PEC pec = new PEC();
  * IEvent event = new Event(...);
  * pec.addEventPEC(event);
  * IEvent nextEvent = pec.nextEventPEC();
+ * }</pre>
  * 
  * Note: The actual implementation of the IEvent interface is not shown here.
  * The PEC class assumes that the IEvent interface and its implementing classes exist and have appropriate functionality.
- * 
+ *  
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco

@@ -7,6 +7,8 @@ package graph;
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco
+ * @see GraphGeneratorStrategy
+ * @see GraphReaderStrategy
  */
 public interface IGraphCreationStrategy {
     public void fill(WeightedGraph graph, int nodes, int maxWeight, String file);

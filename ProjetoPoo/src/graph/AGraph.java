@@ -16,6 +16,8 @@ import java.util.Set;
  * @author João Mateus 
  * @author Tiago Mira
  * @author Rodrigo Francisco
+ * @see WeightedGraph
+ * @see ant_colony_optimization.PheroGraph
  */
 public abstract class AGraph<N,E> implements IGraph<N, E> {
 

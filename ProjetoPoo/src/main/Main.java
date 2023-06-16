@@ -43,10 +43,10 @@ public class Main{
         //clearScreen();
         
         // debug without command line arguments
-        //String[] customArgs = initCustomArgs("generate");
-        //Args params = new Args(customArgs);   // Parse command line arguments
+        String[] customArgs = initCustomArgs("file");
+        Args params = new Args(customArgs);   // Parse command line arguments
 
-        Args params = new Args(args);
+        //Args params = new Args(args);
 
         //Generate the Graph
         WeightedGraph graph = new WeightedGraph();
@@ -177,7 +177,7 @@ public class Main{
         }else{
             String[] customArgs = new String[12];
             customArgs[0] = new String("-f");
-            customArgs[1] = new String("./test.txt");
+            customArgs[1] = new String("./TESTS/test.txt");
             return customArgs;
         }
     }

@@ -27,6 +27,7 @@ public class MoveEvent extends AEvent implements IMoveEvent{
 
     @Override
     public void handleEvent() {
+        //Travel
         formiga.travel(eventTime, this.newEvents);
         
         //Choose next node
