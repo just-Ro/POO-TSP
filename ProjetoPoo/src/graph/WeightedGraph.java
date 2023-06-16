@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * @author João Mateus 
+ * @author Tiago Mira
+ * @author Rodrigo Francisco
+ */
 public class WeightedGraph extends AGraph<Integer,Integer> {
     private Map<String,IGraphCreationStrategy> graphCreators;
     private IGraphCreationStrategy graphCreatorStrat;
@@ -46,7 +51,7 @@ public class WeightedGraph extends AGraph<Integer,Integer> {
 		Set<Integer> nodes = getNodes();
 		for( Integer source : nodes){
 			for(Integer destination : nodes){
-				builder.append(hasEdge(source, destination) ? getEdge(source, destination).toString() : "0");
+				builder.append(hasEdge(source, destination) ? getEdge(source, destination).toString() : "\033[31m0\033[m");
 				builder.append(" ");
 			}
 			builder.append("\n");

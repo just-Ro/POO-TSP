@@ -4,8 +4,10 @@ import java.util.Set;
 
 import graph.AGraph;
 
-/*
- *  Modifying edges graph
+/**
+ * @author João Mateus 
+ * @author Tiago Mira
+ * @author Rodrigo Francisco
  */
 public class PheroGraph extends AGraph<Integer, Double> {
 /*
@@ -48,7 +50,6 @@ impl
         } else {
 			setEdge(source, destination, value);
 		}
-
 		// Pheromone level can't be negative
 		if(getEdge(source,destination) < 0.0){
 			setEdge(source, destination, 0.0);
@@ -64,7 +65,7 @@ impl
 		Set<Integer> nodes = getNodes();
 		for( Integer source : nodes){
 			for(Integer destination : nodes){
-				builder.append(hasEdge(source, destination) ? String.format("%.2f", getEdge(source, destination)) : "0.00");
+				builder.append(hasEdge(source, destination) ? String.format("%.2f", getEdge(source, destination)) : "    ");
 				builder.append(" ");
 			}
 			builder.append("\n");

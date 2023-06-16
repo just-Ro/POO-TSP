@@ -4,6 +4,11 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * @author João Mateus 
+ * @author Tiago Mira
+ * @author Rodrigo Francisco
+ */
 public abstract class AGraph<N,E> implements IGraph<N, E> {
 
 	// We use Hashmap to store the edges in the graph
@@ -31,7 +36,10 @@ public abstract class AGraph<N,E> implements IGraph<N, E> {
 		if (!this.map.containsKey(destination))
 			addNode(destination);
 
-		setEdge(source, destination, edge);
+		this.map.get(source).putIfAbsent(destination, edge);
+		if (this.bidirectional == true) {
+			this.map.get(destination).putIfAbsent(source, edge);
+		}
 	}
 
 	// This function gives the count of nodes

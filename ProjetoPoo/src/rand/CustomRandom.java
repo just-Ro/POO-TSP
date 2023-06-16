@@ -3,6 +3,11 @@ package rand;
 import java.util.Random;
 import java.util.List;
 
+/**
+ * @author João Mateus 
+ * @author Tiago Mira
+ * @author Rodrigo Francisco
+ */
 public class CustomRandom extends Random{
     public CustomRandom(){
         super();

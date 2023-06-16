@@ -1,13 +1,14 @@
 package ant_colony_optimization;
 
-
 import simulation.AEvent;
+import static rand.myMath.expRandom;
 
-
-//Apos n movimentos, por cada edge do ciclo, criar um evento de evaporacao
-//Simulacao a partir de n movimentos: if ph > 0 -> dar schedule da proxima evaporacao
-
-public class EvaporationEvent extends AEvent{
+/**
+ * @author João Mateus 
+ * @author Tiago Mira
+ * @author Rodrigo Francisco
+ */
+public class EvaporationEvent extends AEvent implements IEvaporationEvent{
 
     private double eta, rho;
     private int source, dest;
@@ -21,17 +22,25 @@ public class EvaporationEvent extends AEvent{
         this.dest = dest;
         this.source = source;
         this.pGraph = pGraph;
-
+        //System.out.printf("\nEvento de evaporacao criado! %.4f\n", eventTime);
+        //System.out.println("s e d: " + source + " " + dest);
         this.eventTime += expRandom(eta);
     }
 
     @Override
     public void handleEvent() {
-        System.out.println("Evaporou!" + eventTime);
-        this.pGraph.updateEdge(source, dest, -this.rho);
-        this.eventTime += expRandom(eta);
+        //System.out.println("oi evap: " + this.eventTime);
+        //System.out.printf("Evaporou! %.2f\n", eventTime);
+        //System.out.println("Quantas pheros antes: " + this.pGraph.getEdge(source, dest));
+        //System.out.println("s e d: " + source + " " + dest);
 
-        if(this.pGraph.getEdge(source, dest) <= 0){
+        this.pGraph.updateEdge(source, dest, (-this.rho));
+        this.eventTime += expRandom(eta);
+        //System.out.println("prox evap: " + this.eventTime);
+        //System.out.println("Quantas pheros depois: " + this.pGraph.getEdge(source, dest) + "\n");
+        //System.out.println(pGraph);
+
+        if(this.pGraph.getEdge(source, dest) == 0.0){
             this.isvalid = false;
         }
 

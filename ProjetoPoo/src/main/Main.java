@@ -22,6 +22,11 @@ import simulation.*;
  * (linux)
  */
 
+ /**
+ * @author João Mateus 
+ * @author Tiago Mira
+ * @author Rodrigo Francisco
+ */
 public class Main{
 
     // possivelmente passar classe Args pra aqui flr com stora !!!
@@ -41,8 +46,7 @@ public class Main{
         graph.createGraph(params.nodes, params.maxEdgeWeight, params.file);
     
         printProgramState(graph, params);
-
-        Colony col = new Colony(graph, params.colonySize,params.nestNode, params.nodes, params.alfa,params.beta, params.pheromoneLevel,params.eta,params.rho);
+        Colony col = new Colony(graph, params.colonySize,params.nestNode, params.nodes, params.alfa,params.beta, params.pheromoneLevel, params.eta,params.rho);
 
         Simulator sim = new Simulator(params.finalInstant);
         init(params, col, sim);
@@ -56,7 +60,7 @@ public class Main{
             IEvent ev = new MoveEvent(0, formiga, params.delta);
             sim.addToPEC(ev);
         }
-        IEvent ev = new TimeEvent(0, params.finalInstant);
+        IEvent ev = new TimeEvent(params.finalInstant/20, params.finalInstant, col.getScoreBoard());
         sim.addToPEC(ev);
     }
 
@@ -111,22 +115,22 @@ public class Main{
         if(mode.equals("generate")){
             String[] customArgs = new String[12];
             customArgs[0] = new String("-r");
-            customArgs[1] = new String("8");    // nodes
+            customArgs[1] = new String("10");    // nodes
             customArgs[2] = new String("9");    // max weight
             customArgs[3] = new String("1");    // nest node
             customArgs[4] = new String("1.0");  // alpha
             customArgs[5] = new String("1.0");  // beta
-            customArgs[6] = new String("1.0");  // delta
-            customArgs[7] = new String("1.0");  // eta
-            customArgs[8] = new String("1.0");  // rho
-            customArgs[9] = new String("1.0");  // pheromone level
-            customArgs[10] = new String("1");   // colony size
+            customArgs[6] = new String("0.2");  // delta
+            customArgs[7] = new String("2.0");  // eta
+            customArgs[8] = new String("10.0");  // rho
+            customArgs[9] = new String("0.5");  // pheromone level
+            customArgs[10] = new String("200");   // colony size
             customArgs[11] = new String("300.0"); // final instant
             return customArgs;
         }else{
             String[] customArgs = new String[12];
             customArgs[0] = new String("-f");
-            customArgs[1] = new String("test.txt");
+            customArgs[1] = new String("./test.txt");
             return customArgs;
         }
     }

@@ -3,6 +3,11 @@ package ant_colony_optimization;
 import rand.CustomRandom;
 import rand.RandomSingleton;
 
+/**
+ * @author João Mateus 
+ * @author Tiago Mira
+ * @author Rodrigo Francisco
+ */
 public class Names {
     private static String[] names = {
         "James", "John", "Robert", "Michael", "William", "David", "Joseph", "Charles", "Thomas",
@@ -30,7 +35,7 @@ public class Names {
         "Brawley", "Breri", "Briar", "Brighton", "Broderick", "Bronson", "Bryce", "Burdette", "Burle", "Byrd", "Byron",
         "Cabal", "Cage", "Cahir", "Cavalon", "Cedar", "Chatillon", "Churchill", "Clachas", "Addison", "Alivia", "Allaya",
         "Amarie", "Amaris", "Annabeth", "Annalynn", "Araminta", "Ardys", "Ashland", "Avery", "Bedegrayne",
-        "Bernadette", "Billie", "Birdee", "Bliss", "Brice", "Brittany", "Bryony", "Cameo", "Carol", "Chalee",
+        "Bernadette", "Billie Eilish", "Birdee", "Bliss", "Brice", "Brittany", "Bryony", "Cameo", "Carol", "Chalee",
         "Christy", "Corky", "Cotovatre", "Courage", "Daelen", "Dana", "Darnell", "Dawn", "Delsie", "Denita",
         "Devon", "Devona", "Diamond", "Divinity", "Duff", "Dustin", "Dusty", "Eren", "Eppie",
         "Everilda", "Falynn", "Fanny", "Faren", "Freedom", "Shane", "Lady Gaga",
@@ -93,7 +98,7 @@ public class Names {
         "Robson", "Rockleigh", "Sunniva", "Suzana", "Symphony", "Tacey", "Tahnee", "Taite", "Talon", "Tambre", "Tamia",
         "Taniya", "Tanner", "Tanzi", "Taria", "Tate", "Tatum", "Tawnie", "Taya", "Tayla",
         "Taylor", "Tayna", "Teddi", "Tena", "Tera", "Teri", "Teryl", "Thistle", "Timotha",
-        "Tinble", "Tosha", "Totie", "Traci", "Tru", "Trudie", "Trudy", "Tryamon", "Tuesday",
+        "Tinble", "Tosha", "Gois", "Totie", "Traci", "Tru", "Trudie", "Trudy", "Tryamon", "Tuesday",
         "Twila", "Twyla", "Tyne", "Udele", "Unity", "Vail", "Vala", "Velvet", "Venetta",
         "Walker", "Wallis", "Waneta", "Waverly", "Wendy", "Rockwell", "Roden", "Roe", "Roldan",
         "Rosencrantz", "Ross", "Roswell", "Rowley", "Royce",
